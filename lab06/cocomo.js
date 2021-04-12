@@ -265,18 +265,10 @@ function calculate() {
 	model.drawchart();
 }
 
-changeColor = elem => {
-	const {text} = elem.options[elem.selectedIndex];
-	if (text === "Очень низкий") {
-		elem.style.backgroundColor = "rgb(255, 87, 87)";
-	} else if (text === "Низкий") {
-		elem.style.backgroundColor = "rgb(255, 126, 87)";
-	} else if (text === "Высокий") {
-		elem.style.backgroundColor = "rgb(177, 255, 87)";
-	} else if (text === "Очень высокий") {
-		elem.style.backgroundColor = "rgb(87, 255, 95)";
-	} else {
-		elem.style.backgroundColor = "white";
-		// elem.style.backgroundColor = "rgb(255, 216, 87)";
-	}
+changeColor = element => {
+	const labels = ['Очень низкий', 'Низкий', 'Номинальный', 'Высокий', 'Очень высокий'];
+	const colors = ['rgb(255, 87, 87)', 'rgb(255, 126, 87)', /* 'rgb(255, 216, 87)' */ 'rgb(255, 255, 255)', 'rgb(177, 255, 87)', 'rgb(87, 255, 95)']
+	const selectedIndex = labels.indexOf(element.options[element.selectedIndex].text);
+	const colorIndex = element.classList.contains('reversed-color') ? colors.length - 1 - selectedIndex : selectedIndex;
+	element.style.backgroundColor = colors[colorIndex];
 }
