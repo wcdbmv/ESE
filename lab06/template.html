@@ -24,89 +24,35 @@
 						{% with id="RELY", text="Требуемая надёжность", option_values=[0.75, 0.86, 1, 1.15, 1.4], reversed_color=True %}
 							{% include "input-group.html" %}
 						{% endwith %}
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="DATA">DATA</label>
-								<label class="input-group-text" for="DATA">Размер базы данных</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select reversed-color" id="DATA">
-								<option value="0.94">Низкий</option>
-								<option selected value="1">Номинальный</option>
-								<option value="1.08">Высокий</option>
-								<option value="1.16">Очень высокий</option>
-							</select>
-						</div>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="CPLX">CPLX</label>
-								<label class="input-group-text" for="CPLX">Сложность продукта</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select reversed-color" id="CPLX">
-								<option value="0.7">Очень низкий</option>
-								<option value="0.85">Низкий</option>
-								<option selected value="1">Номинальный</option>
-								<option value="1.08">Высокий</option>
-								<option value="1.16">Очень высокий</option>
-							</select>
-						</div>
+						{% with id="DATA", text="Размер базы данных", option_values=[0, 0.94, 1, 1.08, 1.16], reversed_color=True %}
+							{% include "input-group.html" %}
+						{% endwith %}
+						{% with id="CPLX", text="Сложность продукта", option_values=[0.7, 0.85, 1, 1.08, 1.16], reversed_color=True %}
+							{% include "input-group.html" %}
+						{% endwith %}
 					</div>
 				</div>
 				<div class="card shadow-sm mb-4">
 					<div class="card-body">
 						<h5 class="card-title">Атрибуты компьютера</h5>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="TIME">TIME</label>
-								<label class="input-group-text" for="TIME">Ограничение времени выполнения</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select" id="TIME">
-								<option selected value="1">Номинальный</option>
-								<option value="1.11">Высокий</option>
-								<option value="1.50">Очень высокий</option>
-							</select>
-						</div>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="STOR">STOR</label>
-								<label class="input-group-text" for="STOR">Ограничение объема основной
-									памяти</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select reversed-color" id="STOR">
-								<option selected value="1.0">Номинальный</option>
-								<option value="1.11">Высокий</option>
-								<option value="1.50">Очень высокий</option>
-							</select>
-						</div>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="VIRT">VIRT</label>
-								<label class="input-group-text" for="VIRT">Изменчивость виртуальной машины </label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select reversed-color" id="VIRT">
-								<option value="0.87">Низкий</option>
-								<option selected value="1">Номинальный</option>
-								<option value="1.15">Высокий</option>
-								<option value="1.30">Очень высокий</option>
-							</select>
-						</div>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="TURN">TURN</label>
-								<label class="input-group-text" for="TURN">Время реакции компьютера</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select reversed-color" id="TURN">
-								<option value="0.87">Низкий</option>
-								<option selected value="1">Номинальный</option>
-								<option value="1.07">Высокий</option>
-								<option value="1.15">Очень высокий</option>
-							</select>
-						</div>
+						{% with id="TIME", text="Ограничение времени выполнения", option_values=[0, 0, 1, 1.11, 1.5], reversed_color=True %}
+							{% include "input-group.html" %}
+						{% endwith %}
+						{% with id="STOR", text="Ограничение объема основной памяти", option_values=[0, 0, 1, 1.11, 1.5], reversed_color=True %}
+							{% include "input-group.html" %}
+						{% endwith %}
+						{% with id="VIRT", text="Изменчивость виртуальной машины", option_values=[0, 0.87, 1, 1.15, 1.3], reversed_color=True %}
+							{% include "input-group.html" %}
+						{% endwith %}
+						{% with id="TURN", text="Время реакции компьютера", option_values=[0, 0.87, 1, 1.15, 1.3], reversed_color=True %}
+							{% include "input-group.html" %}
+						{% endwith %}
 					</div>
 				</div>
-				<div class="input-group form-group mb-3">
+				<div class="input-group form-group mb-2">
 					<div class="input-group-prepend">
-					<label class="input-group-text bg-primary text-light" for="formula">Формула</label>
-					<label class="input-group-text" for="formula">для оценки осн. работ и сроков</label>
+						<label class="input-group-text bg-primary text-light" for="formula">Формула</label>
+						<label class="input-group-text" for="formula">для оценки осн. работ и сроков</label>
 					</div>
 					<select class="custom-select" id="formula">
 						<option selected value="1">Обычный</option>
@@ -114,9 +60,9 @@
 						<option value="3">Встроенный</option>
 					</select>
 				</div>
-				<div class="input-group form-group mb-3">
+				<div class="input-group form-group mb-2">
 					<div class="input-group-prepend">
-					<label class="input-group-text bg-primary text-light" for="SIZE">SIZE</label>
+						<label class="input-group-text bg-primary text-light" for="SIZE">SIZE</label>
 					</div>
 					<input id="SIZE" value="100">
 					<div class="input-group-append">
@@ -128,119 +74,40 @@
 				<div class="card shadow-sm mb-4">
 					<div class="card-body">
 						<h5 class="card-title">Атрибуты проекта</h5>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="MODP">MODP</label>
-								<label class="input-group-text" for="MODP">Использование современных методов</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select" id="MODP">
-								<option value="1.24">Очень низкий</option>
-								<option value="1.1">Низкий</option>
-								<option selected value="1.0">Номинальный</option>
-								<option value="0.91">Высокий</option>
-								<option value="0.82">Очень высокий</option>
-							</select>
-						</div>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="TOOL">TOOL</label>
-								<label class="input-group-text" for="TOOL">Использование программных
-									инструментов</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select" id="TOOL">
-								<option value="1.24">Очень низкий</option>
-								<option value="1.1">Низкий</option>
-								<option selected value="1.0">Номинальный</option>
-								<option value="0.91">Высокий</option>
-								<option value="0.82">Очень высокий</option>
-							</select>
-						</div>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="SCED">SCED</label>
-								<label class="input-group-text" for="SCED">Требуемые сроки разработки</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select" id="SCED">
-								<option value="1.23">Очень низкий</option>
-								<option value="1.08">Низкий</option>
-								<option selected value="1.0">Номинальный</option>
-								<option value="1.04">Высокий</option>
-								<option value="1.1">Очень высокий</option>
-							</select>
-						</div>
+						{% with id="MODP", text="Использование современных методов", option_values=[1.24, 1.1, 1, 0.91, 0.82], reversed_color=False %}
+							{% include "input-group.html" %}
+						{% endwith %}
+						{% with id="TOOL", text="Использование программных инструментов", option_values=[1.24, 1.1, 1, 0.91, 0.82], reversed_color=False %}
+							{% include "input-group.html" %}
+						{% endwith %}
+						{% with id="SCED", text="Требуемые сроки разработки", option_values=[1.23, 1.08, 1, 1.04, 1.1], reversed_color=False %}
+							{% include "input-group.html" %}
+						{% endwith %}
 					</div>
 				</div>
 				<div class="card shadow-sm mb-4">
 					<div class="card-body">
 						<h5 class="card-title">Атрибуты персонала</h5>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="ACAP">ACAP</label>
-								<label class="input-group-text" for="ACAP">Способности аналитика</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select" id="ACAP">
-								<option value="1.46">Очень низкий</option>
-								<option value="1.19">Низкий</option>
-								<option selected value="1">Номинальный</option>
-								<option value="0.86">Высокий</option>
-								<option value="0.71">Очень высокий</option>
-							</select>
-						</div>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="AEXP">AEXP</label>
-								<label class="input-group-text" for="AEXP">Знание приложений</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select" id="AEXP">
-								<option value="1.29">Очень низкий</option>
-								<option value="1.15">Низкий</option>
-								<option selected value="1.0">Номинальный</option>
-								<option value="0.91">Высокий</option>
-								<option value="0.82">Очень высокий</option>
-							</select>
-						</div>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="PCAP">PCAP</label>
-								<label class="input-group-text" for="PCAP">Способности программиста</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select" id="PCAP">
-								<option value="1.42">Очень низкий</option>
-								<option value="1.17">Низкий</option>
-								<option selected value="1">Номинальный</option>
-								<option value="0.86">Высокий</option>
-								<option value="0.7">Очень высокий</option>
-							</select>
-						</div>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="VEXP">VEXP</label>
-								<label class="input-group-text" for="VEXP">Знание виртуальной машины </label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select" id="VEXP">
-								<option value="1.21">Очень низкий</option>
-								<option value="1.1">Низкий</option>
-								<option selected value="1">Номинальный</option>
-								<option value="0.9">Высокий</option>
-							</select>
-						</div>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="LEXP">LEXP</label>
-								<label class="input-group-text" for="LEXP">Знание языка программирования</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select" id="LEXP">
-								<option value="1.14">Очень низкий</option>
-								<option value="1.07">Низкий</option>
-								<option selected value="1">Номинальный</option>
-								<option value="0.95">Высокий</option>
-							</select>
-						</div>
+						{% with id="ACAP", text="Способности аналитика", option_values=[1.46, 1.19, 1, 0.86, 0.71], reversed_color=False %}
+							{% include "input-group.html" %}
+						{% endwith %}
+						{% with id="AEXP", text="Знание приложений", option_values=[1.29, 1.15, 1, 0.91, 0.82], reversed_color=False %}
+							{% include "input-group.html" %}
+						{% endwith %}
+						{% with id="PCAP", text="Способности программиста", option_values=[1.42, 1.17, 1, 0.86, 0.7], reversed_color=False %}
+							{% include "input-group.html" %}
+						{% endwith %}
+						{% with id="VEXP", text="Знание виртуальной машины", option_values=[1.21, 1.1, 1, 0.9, 0], reversed_color=False %}
+							{% include "input-group.html" %}
+						{% endwith %}
+						{% with id="LEXP", text="Знание языка программирования", option_values=[1.14, 1.07, 1, 0.95, 0], reversed_color=False %}
+							{% include "input-group.html" %}
+						{% endwith %}
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="input-group form-group mb-3">
+		<div class="input-group form-group mb-2">
 			<div class="input-group-prepend">
 			<label class="input-group-text bg-primary text-light" for="change">Изменять</label>
 			</div>
