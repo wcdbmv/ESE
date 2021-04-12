@@ -21,19 +21,9 @@
 				<div class="card shadow-sm mb-4">
 					<div class="card-body">
 						<h5 class="card-title">Атрибуты программного продукта</h5>
-						<div class="input-group form-group mb-3">
-							<div class="input-group-prepend">
-								<label class="input-group-text bg-primary text-light" for="RELY">RELY</label>
-								<label class="input-group-text" for="RELY">Требуемая надежность</label>
-							</div>
-							<select onchange="changeColor(this)" class="custom-select reversed-color" id="RELY">
-								<option value="0.75">Очень низкий</option>
-								<option value="0.86">Низкий</option>
-								<option selected value="1">Номинальный</option>
-								<option value="1.15">Высокий</option>
-								<option value="1.4">Очень высокий</option>
-							</select>
-						</div>
+						{% with id="RELY", text="Требуемая надёжность", option_values=[0.75, 0.86, 1, 1.15, 1.4], reversed_color=True %}
+							{% include "input-group.html" %}
+						{% endwith %}
 						<div class="input-group form-group mb-3">
 							<div class="input-group-prepend">
 								<label class="input-group-text bg-primary text-light" for="DATA">DATA</label>
