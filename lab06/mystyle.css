@@ -1,0 +1,40 @@
+.col {
+	padding: 5px;
+}
+
+.card-body {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.container {
+	margin: 0px;
+	padding: 0px;
+}
+
+.card .input-group-text.bg-primary {
+	width: 70px;
+}
+
+.input-group-text.bg-primary {
+	width: 94px;
+}
+
+.input-group-text + .input-group-text {
+	width: 330px;
+}
+
+select option {
+	background-color:white;
+}
+
+.centered {
+	display: flex;
+	justify-content: center;
+}
+
+
+.canvas {
+	margin-top: 15px;
+	display : inline-block;
+}
