@@ -1,7 +1,7 @@
 'use strict';
 
 let myChart1, myChart2;
-let label = 0;
+let nLabels = 0, nTables = 0;
 
 const setUpCharts = () => {
 	const createChart = elementId => {
@@ -73,8 +73,8 @@ class Model {
 		this.tmarray = [];
 		this.changes = document.getElementById('change').value;
 		if (this.changes === 'nothing') {
-			document.getElementById('chart_labels').innerHTML += this.formLabel();
 			this.drawTable();
+			document.getElementById('chart_labels').innerHTML += this.formLabel();
 			return;
 		}
 
@@ -108,10 +108,10 @@ class Model {
 		});
 
 		const color = randomRgba();
-		++label;
+		++nLabels;
 		const createDataset = datum => {
 			return {
-				label,
+				label: nLabels,
 				data: datum,
 				backgroundColor: [color],
 				borderColor: [color],
@@ -128,9 +128,9 @@ class Model {
 	formLabel() {
 		let str = '';
 		if (this.changes === 'nothing') {
-			str += `PM: ${this.PM}; TM: ${this.TM}`;
+			str += `Таблицы ${nTables}.* — PM: ${this.PM.toFixed(2)}; TM: ${this.TM.toFixed(2)}`;
 		} else {
-			str += `${label}: changing ${this.changes}`;
+			str += `Графики ${nLabels}.* — изменяя ${this.changes}`;
 		}
 
 		this.parameters.forEach(parameter => {
@@ -144,56 +144,90 @@ class Model {
 	}
 
 	drawTable() {
+		++nTables;
+
 		let budget = 0;
 		const prices = [100000, 192000, (140000 + 150000) / 2, (120000 + 100000) / 2, (120000 + 100000) / 2];
-		const table1 = {
-			title: 'Распределение работ и времени по стадиям жизненного цикла',
-			data: [['Вид деятельности', 'Трудозатраты (чм)', 'Время (м)', 'Кол-во сотрудников (Work/Time)'],
-					['Планирование и определение требований', 0.08 * this.PM, 0.36 * this.TM, Math.round(0.08 * this.PM / (0.36 * this.TM))],
-					['Проектирование продукта', 0.18 * this.PM, 0.36 * this.TM, Math.round(0.18 * this.PM / (0.36 * this.TM))],
-					['Детальное проектирование', 0.25 * this.PM, 0.18 * this.TM, Math.round(0.25 * this.PM / (0.18 * this.TM))],
-					['Кодирование и тестирование отдельных модулей', 0.26 * this.PM, 0.18 * this.TM, Math.round(0.26 * this.PM / (0.18 * this.TM))],
-					['Интеграция и тестирование', 0.31 * this.PM, 0.28 * this.TM, Math.round(0.31 * this.PM / (0.28 * this.TM))],
-					['Итого', (0.08 + 0.18 + 0.25 + 0.26 + 0.31) * this.PM, (0.36 + 0.36 + 0.18 + 0.18 + 0.28) * this.TM, '']],
+		const tableObj1 = {
+			title: `Таблица ${nTables}.1 — Распределение работ и времени по стадиям жизненного цикла`,
+			head: ['Вид деятельности', 'Трудозатраты (чм)', 'Время (м)', 'Кол-во сотрудников (Work/Time)'],
+			data: [['Планирование и определение требований', 0.08 * this.PM, 0.36 * this.TM, Math.round(0.08 * this.PM / (0.36 * this.TM))],
+				   ['Проектирование продукта', 0.18 * this.PM, 0.36 * this.TM, Math.round(0.18 * this.PM / (0.36 * this.TM))],
+				   ['Детальное проектирование', 0.25 * this.PM, 0.18 * this.TM, Math.round(0.25 * this.PM / (0.18 * this.TM))],
+				   ['Кодирование и тестирование отдельных модулей', 0.26 * this.PM, 0.18 * this.TM, Math.round(0.26 * this.PM / (0.18 * this.TM))],
+				   ['Интеграция и тестирование', 0.31 * this.PM, 0.28 * this.TM, Math.round(0.31 * this.PM / (0.28 * this.TM))],
+				   ['Итого', (0.08 + 0.18 + 0.25 + 0.26 + 0.31) * this.PM, (0.36 + 0.36 + 0.18 + 0.18 + 0.28) * this.TM, '']],
 					// ['Итого', (0.08 + 0.18 + 0.25 + 0.26 + 0.31) * this.PM, (0.36 + 0.36 + 0.18 + 0.18 + 0.28) * this.TM, Math.round((0.08 + 0.18 + 0.25 + 0.26 + 0.31) * this.PM / ((0.36 + 0.36 + 0.18 + 0.18 + 0.28) * this.TM))]],
 		}
-		tableCreate(table1);
+		const table1 = tableCreate(tableObj1);
 
-		table1.data.forEach((dataRow, index) => {if (index > 0 && index < 6) {budget += (dataRow[1] * prices[index - 1])}});
-		const table2 = {
-			title: 'Предположительный бюджет',
+		for (let i = 0; i < 5; ++i) {
+			budget += tableObj1.data[i][1] * prices[i];
+		}
+		const tableObj2 = {
+			title: `Таблица ${nTables}.2 — Предположительный бюджет`,
 			data: [['Анализ требований (4%)', Math.round(0.04 * budget)],
 					['Проектирование продукта (12%)', Math.round(0.12 * budget)],
 					['Программирование (44%)', Math.round(0.44 * budget)],
 					['Тестирование (6%)', Math.round(0.06 * budget)],
 					['Верификация и аттестация (14%)', Math.round(0.14 * budget)],
-					['Канцелярия проекта (7%)',Math.round( 0.7 * budget)],
+					['Канцелярия проекта (7%)', Math.round( 0.7 * budget)],
 					['Управление конфигурацией и обеспечение качества (7%)', Math.round(0.07 * budget)],
 					['Создание руководств (6%)', Math.round(0.06 * budget)],
 					['Непредвиденные риски(+20%)', Math.round(0.20 * budget)],
 					['Итого', Math.round(1.2 * budget)]],
 		}
-		tableCreate(table2);
+		const table2 = tableCreate(tableObj2);
+
+		const div = document.getElementById('result');
+		const row = document.createElement('div');
+		row.classList.add('row');
+		row.appendChild(table1);
+		row.appendChild(table2);
+		div.appendChild(row);
 	}
 }
 
 const tableCreate = tableObj => {
-	const {body} = document;
-	const table = document.createElement('table');
-	const tableTitle = document.createElement('h6');
-	table.style.border = '1px solid black';
+	const div = document.createElement('div');
+	div.classList.add(tableObj.hasOwnProperty('head') ? 'col-7' : 'col');
 
+	const tableTitle = document.createElement('h4');
 	tableTitle.innerHTML = tableObj.title;
-	for (let i = 0; i < tableObj.data.length; i++) {
-		const tr = table.insertRow();
-		for (let j = 0; j < tableObj.data[0].length; j++) {
-			const td = tr.insertCell();
-			td.appendChild(document.createTextNode(tableObj.data[i][j]));
-			td.style.border = '1px solid black';
+
+	const table = document.createElement('table');
+	['table', 'table-hover'].forEach(className => table.classList.add(className));
+
+	if (tableObj.hasOwnProperty('head')) {
+		const thead = document.createElement('thead');
+		const tr = document.createElement('tr');
+		for (let i = 0; i < tableObj.head.length; ++i) {
+			const th = document.createElement('th');
+			th.setAttribute('scope', 'col');
+			th.appendChild(document.createTextNode(tableObj.head[i]));
+			tr.appendChild(th);
 		}
+		thead.appendChild(tr);
+		table.appendChild(thead);
 	}
-	body.appendChild(tableTitle);
-	body.appendChild(table);
+
+	const tbody = document.createElement('tbody');
+	for (let i = 0; i < tableObj.data.length; ++i) {
+		const tr = document.createElement('tr');
+		for (let j = 0; j < tableObj.data[0].length; ++j) {
+			const td = tr.insertCell();
+			const text = typeof tableObj.data[i][j] === 'number' ? tableObj.data[i][j].toFixed(2) : tableObj.data[i][j];
+			td.appendChild(document.createTextNode(text));
+			tr.appendChild(td);
+		}
+		tbody.appendChild(tr);
+	}
+	table.appendChild(tbody);
+
+	div.appendChild(tableTitle);
+	div.appendChild(table);
+
+	return div;
 }
 
 const addData = (chart, dataset) => {

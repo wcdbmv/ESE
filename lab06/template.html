@@ -107,15 +107,17 @@
 		<button type="button" class="btn btn-primary btn-lg btn-outline-success" onclick="calculate()">Рассчитать</button>
 	</div>
 
-	<div class="canvas">
-		<h6>PM трудоемкость проекта</h6>
-		<canvas id="myChartPM" width="550" height="450"></canvas>
+	<div id="result" class="mx-auto container">
+		<div class="canvas">
+			<h6>PM трудоемкость проекта</h6>
+			<canvas id="myChartPM" width="550" height="450"></canvas>
+		</div>
+		<div class="canvas">
+			<h6>TM время разработки проекта</h6>
+			<canvas id="myChartTM" width="550" height="450"></canvas>
+		</div>
+		<p id="chart_labels"></p>
 	</div>
-	<div class="canvas">
-		<h6>TM время разработки проекта</h6>
-		<canvas id="myChartTM" width="550" height="450"></canvas>
-	</div>
-	<p id="chart_labels"></p>
 	<script> setUpCharts(); </script>
 </body>
 </html>
