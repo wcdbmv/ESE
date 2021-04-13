@@ -18,37 +18,21 @@
 	<div class="mx-auto container">
 		<div class="row">
 			<div class="col">
-				<div class="card shadow-sm mb-4">
-					<div class="card-body">
-						<h5 class="card-title">Атрибуты программного продукта</h5>
-						{% with id="RELY", text="Требуемая надёжность", option_values=[0.75, 0.86, 1, 1.15, 1.4], reversed_color=True %}
-							{% include "input-group.html" %}
-						{% endwith %}
-						{% with id="DATA", text="Размер базы данных", option_values=[0, 0.94, 1, 1.08, 1.16], reversed_color=True %}
-							{% include "input-group.html" %}
-						{% endwith %}
-						{% with id="CPLX", text="Сложность продукта", option_values=[0.7, 0.85, 1, 1.08, 1.16], reversed_color=True %}
-							{% include "input-group.html" %}
-						{% endwith %}
-					</div>
-				</div>
-				<div class="card shadow-sm mb-4">
-					<div class="card-body">
-						<h5 class="card-title">Атрибуты компьютера</h5>
-						{% with id="TIME", text="Ограничение времени выполнения", option_values=[0, 0, 1, 1.11, 1.5], reversed_color=True %}
-							{% include "input-group.html" %}
-						{% endwith %}
-						{% with id="STOR", text="Ограничение объема основной памяти", option_values=[0, 0, 1, 1.11, 1.5], reversed_color=True %}
-							{% include "input-group.html" %}
-						{% endwith %}
-						{% with id="VIRT", text="Изменчивость виртуальной машины", option_values=[0, 0.87, 1, 1.15, 1.3], reversed_color=True %}
-							{% include "input-group.html" %}
-						{% endwith %}
-						{% with id="TURN", text="Время реакции компьютера", option_values=[0, 0.87, 1, 1.15, 1.3], reversed_color=True %}
-							{% include "input-group.html" %}
-						{% endwith %}
-					</div>
-				</div>
+				{% with title="Атрибуты программного продукта", input_groups=[
+					{"id": "RELY", "text": "Требуемая надёжность", "option_values": [0.75, 0.86, 1, 1.15, 1.4], "reversed_color": True},
+					{"id": "DATA", "text": "Размер базы данных", "option_values": [0, 0.94, 1, 1.08, 1.16], "reversed_color": True},
+					{"id": "CPLX", "text": "Сложность продукта", "option_values": [0.7, 0.85, 1, 1.08, 1.16], "reversed_color": True},
+				] %}
+					{% include "card-form.html" %}
+				{% endwith %}
+				{% with title="Атрибуты компьютера", input_groups=[
+					{"id": "TIME", "text": "Ограничение времени выполнения", "option_values": [0, 0, 1, 1.11, 1.5], "reversed_color": True},
+					{"id": "STOR", "text": "Ограничение объема основной памяти", "option_values": [0, 0, 1, 1.11, 1.5], "reversed_color": True},
+					{"id": "VIRT", "text": "Изменчивость виртуальной машины", "option_values": [0, 0.87, 1, 1.15, 1.3], "reversed_color": True},
+					{"id": "TURN", "text": "Время реакции компьютера", "option_values": [0, 0.87, 1, 1.15, 1.3], "reversed_color": True},
+				] %}
+					{% include "card-form.html" %}
+				{% endwith %}
 				<div class="input-group form-group mb-2">
 					<div class="input-group-prepend">
 						<label class="input-group-text bg-primary text-light" for="formula">Формула</label>
@@ -71,40 +55,22 @@
 				</div>
 			</div>
 			<div class="col">
-				<div class="card shadow-sm mb-4">
-					<div class="card-body">
-						<h5 class="card-title">Атрибуты проекта</h5>
-						{% with id="MODP", text="Использование современных методов", option_values=[1.24, 1.1, 1, 0.91, 0.82], reversed_color=False %}
-							{% include "input-group.html" %}
-						{% endwith %}
-						{% with id="TOOL", text="Использование программных инструментов", option_values=[1.24, 1.1, 1, 0.91, 0.82], reversed_color=False %}
-							{% include "input-group.html" %}
-						{% endwith %}
-						{% with id="SCED", text="Требуемые сроки разработки", option_values=[1.23, 1.08, 1, 1.04, 1.1], reversed_color=False %}
-							{% include "input-group.html" %}
-						{% endwith %}
-					</div>
-				</div>
-				<div class="card shadow-sm mb-4">
-					<div class="card-body">
-						<h5 class="card-title">Атрибуты персонала</h5>
-						{% with id="ACAP", text="Способности аналитика", option_values=[1.46, 1.19, 1, 0.86, 0.71], reversed_color=False %}
-							{% include "input-group.html" %}
-						{% endwith %}
-						{% with id="AEXP", text="Знание приложений", option_values=[1.29, 1.15, 1, 0.91, 0.82], reversed_color=False %}
-							{% include "input-group.html" %}
-						{% endwith %}
-						{% with id="PCAP", text="Способности программиста", option_values=[1.42, 1.17, 1, 0.86, 0.7], reversed_color=False %}
-							{% include "input-group.html" %}
-						{% endwith %}
-						{% with id="VEXP", text="Знание виртуальной машины", option_values=[1.21, 1.1, 1, 0.9, 0], reversed_color=False %}
-							{% include "input-group.html" %}
-						{% endwith %}
-						{% with id="LEXP", text="Знание языка программирования", option_values=[1.14, 1.07, 1, 0.95, 0], reversed_color=False %}
-							{% include "input-group.html" %}
-						{% endwith %}
-					</div>
-				</div>
+				{% with title="Атрибуты проекта", input_groups=[
+					{"id": "MODP", "text": "Использование современных методов", "option_values": [1.24, 1.1, 1, 0.91, 0.82], "reversed_color": False},
+					{"id": "TOOL", "text": "Использование программных инструментов", "option_values": [1.24, 1.1, 1, 0.91, 0.82], "reversed_color": False},
+					{"id": "SCED", "text": "Требуемые сроки разработки", "option_values": [1.23, 1.08, 1, 1.04, 1.1], "reversed_color": False},
+				] %}
+					{% include "card-form.html" %}
+				{% endwith %}
+				{% with title="Атрибуты персонала", input_groups=[
+					{"id": "ACAP", "text" :"Способности аналитика", "option_values": [1.46, 1.19, 1, 0.86, 0.71], "reversed_color": False},
+					{"id": "AEXP", "text" :"Знание приложений", "option_values": [1.29, 1.15, 1, 0.91, 0.82], "reversed_color": False},
+					{"id": "PCAP", "text" :"Способности программиста", "option_values": [1.42, 1.17, 1, 0.86, 0.7], "reversed_color": False},
+					{"id": "VEXP", "text" :"Знание виртуальной машины", "option_values": [1.21, 1.1, 1, 0.9, 0], "reversed_color": False},
+					{"id": "LEXP", "text" :"Знание языка программирования", "option_values": [1.14, 1.07, 1, 0.95, 0], "reversed_color": False},
+				] %}
+					{% include "card-form.html" %}
+				{% endwith %}
 			</div>
 		</div>
 		<div class="input-group form-group mb-2">
