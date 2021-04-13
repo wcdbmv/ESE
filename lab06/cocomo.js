@@ -42,9 +42,9 @@ class Model {
 		});
 
 		const map = {
-			'Обычный': {c1: 3.2, p1: 1.05, c2: 2.5, p2: 0.38},
+			'Обычный':       {c1: 3.2, p1: 1.05, c2: 2.5, p2: 0.38},
 			'Промежуточный': {c1: 3.0, p1: 1.12, c2: 2.5, p2: 0.35},
-			'Встроенный': {c1: 2.8, p1: 1.2, c2: 2.5, p2: 0.32},
+			'Встроенный':    {c1: 2.8, p1:  1.2, c2: 2.5, p2: 0.32},
 		};
 
 		const formula = document.getElementById('formula');
@@ -62,18 +62,18 @@ class Model {
 	}
 
 	calculate() {
-		this.EAF = this.RELY * this.DATA * this.CPLX * this.TIME * this.STOR * this.VIRT * this.TURN * this.MODP * this.TOOL * this.SCED * this.ACAP * this.AEXP * this.PCAP * this.VEXP * this.LEXP;
+		this.EAF = this.parameters.map(parameter => this[parameter]).reduce((a, b) => a * b);
 
 		this.PM = this.c1 * this.EAF * Math.pow(this.SIZE, this.p1);
 		this.TM = this.c2 * Math.pow(this.PM, this.p2);
 	}
 
 	drawChart() {
-		this.pmarray = []
-		this.tmarray = []
-		this.changes = document.getElementById('change').value
+		this.pmarray = [];
+		this.tmarray = [];
+		this.changes = document.getElementById('change').value;
 		if (this.changes === 'nothing') {
-			document.getElementById('chart_labels').innerHTML += this.formLabel()
+			document.getElementById('chart_labels').innerHTML += this.formLabel();
 			this.drawTable();
 			return;
 		}
