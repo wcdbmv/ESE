@@ -25,6 +25,11 @@ const setUpCharts = () => {
 	myChart2 = createChart('myChartTM');
 }
 
+const clearCharts = () => {
+	myChart1.destroy();
+	myChart2.destroy();
+}
+
 const randomRgba = () => {
 	const maxIntensity = 200;
 	const randomInt = () => Math.round(Math.random() * maxIntensity);
@@ -240,6 +245,24 @@ function calculate() {
 	model.insertParams();
 	model.calculate();
 	model.drawChart();
+}
+
+function clearAll() {
+	nLabels = nTables = 0;
+	clearCharts();
+	setUpCharts();
+
+	document.querySelectorAll('#result .row').forEach(element => element.parentNode.removeChild(element));
+	document.getElementById('chart_labels').innerHTML = '';
+
+	const clearSelect = (element, value) => {
+		element.value = value;
+		element.style.backgroundColor = 'rgb(255, 255, 255)';
+	};
+
+	document.querySelectorAll('.card select').forEach(element => clearSelect(element, '1'));
+	clearSelect(document.getElementById('formula'), '1');
+	clearSelect(document.getElementById('change'), 'nothing');
 }
 
 const changeColor = element => {
