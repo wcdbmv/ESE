@@ -269,6 +269,6 @@ changeColor = element => {
 	const labels = ['Очень низкий', 'Низкий', 'Номинальный', 'Высокий', 'Очень высокий'];
 	const colors = ['rgb(255, 87, 87)', 'rgb(255, 126, 87)', /* 'rgb(255, 216, 87)' */ 'rgb(255, 255, 255)', 'rgb(177, 255, 87)', 'rgb(87, 255, 95)']
 	const selectedIndex = labels.indexOf(element.options[element.selectedIndex].text);
-	const colorIndex = element.classList.contains('reversed-color') ? colors.length - 1 - selectedIndex : selectedIndex;
+	const colorIndex = element.classList.contains('reversed-colors') ? colors.length - 1 - selectedIndex : selectedIndex;
 	element.style.backgroundColor = colors[colorIndex];
 }

@@ -3,8 +3,8 @@
 		<label class="input-group-text bg-primary text-light" for="{{ id }}">{{ id }}</label>
 		<label class="input-group-text" for="{{ id }}">{{ text }}</label>
 	</div>
-	{% with reversed_color_class = "reversed-color" if reversed_color else "" %}
-	<select onchange="changeColor(this)" class="custom-select {{ reversed_color_class }}" id="{{ id }}">
+	{% with reversed_colors_class = "reversed-colors" if reversed_colors else "" %}
+	<select onchange="changeColor(this)" class="custom-select {{ reversed_colors_class }}" id="{{ id }}">
 	{% endwith %}
 		{% with labels = ["Очень низкий", "Низкий", "Номинальный", "Высокий", "Очень высокий"] %}
 			{% for option_value in option_values %}

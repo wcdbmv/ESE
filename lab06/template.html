@@ -19,17 +19,17 @@
 		<div class="row">
 			<div class="col">
 				{% with title="Атрибуты программного продукта", input_groups=[
-					{"id": "RELY", "text": "Требуемая надёжность", "option_values": [0.75, 0.86, 1, 1.15, 1.4], "reversed_color": True},
-					{"id": "DATA", "text": "Размер базы данных", "option_values": [0, 0.94, 1, 1.08, 1.16], "reversed_color": True},
-					{"id": "CPLX", "text": "Сложность продукта", "option_values": [0.7, 0.85, 1, 1.08, 1.16], "reversed_color": True},
+					{"id": "RELY", "text": "Требуемая надёжность", "option_values": [0.75, 0.86, 1, 1.15, 1.4], "reversed_colors": True},
+					{"id": "DATA", "text": "Размер базы данных", "option_values": [0, 0.94, 1, 1.08, 1.16], "reversed_colors": True},
+					{"id": "CPLX", "text": "Сложность продукта", "option_values": [0.7, 0.85, 1, 1.08, 1.16], "reversed_colors": True},
 				] %}
 					{% include "card-form.html" %}
 				{% endwith %}
 				{% with title="Атрибуты компьютера", input_groups=[
-					{"id": "TIME", "text": "Ограничение времени выполнения", "option_values": [0, 0, 1, 1.11, 1.5], "reversed_color": True},
-					{"id": "STOR", "text": "Ограничение объема основной памяти", "option_values": [0, 0, 1, 1.11, 1.5], "reversed_color": True},
-					{"id": "VIRT", "text": "Изменчивость виртуальной машины", "option_values": [0, 0.87, 1, 1.15, 1.3], "reversed_color": True},
-					{"id": "TURN", "text": "Время реакции компьютера", "option_values": [0, 0.87, 1, 1.15, 1.3], "reversed_color": True},
+					{"id": "TIME", "text": "Ограничение времени выполнения", "option_values": [0, 0, 1, 1.11, 1.5], "reversed_colors": True},
+					{"id": "STOR", "text": "Ограничение объема основной памяти", "option_values": [0, 0, 1, 1.11, 1.5], "reversed_colors": True},
+					{"id": "VIRT", "text": "Изменчивость виртуальной машины", "option_values": [0, 0.87, 1, 1.15, 1.3], "reversed_colors": True},
+					{"id": "TURN", "text": "Время реакции компьютера", "option_values": [0, 0.87, 1, 1.15, 1.3], "reversed_colors": True},
 				] %}
 					{% include "card-form.html" %}
 				{% endwith %}
@@ -56,18 +56,18 @@
 			</div>
 			<div class="col">
 				{% with title="Атрибуты проекта", input_groups=[
-					{"id": "MODP", "text": "Использование современных методов", "option_values": [1.24, 1.1, 1, 0.91, 0.82], "reversed_color": False},
-					{"id": "TOOL", "text": "Использование программных инструментов", "option_values": [1.24, 1.1, 1, 0.91, 0.82], "reversed_color": False},
-					{"id": "SCED", "text": "Требуемые сроки разработки", "option_values": [1.23, 1.08, 1, 1.04, 1.1], "reversed_color": False},
+					{"id": "MODP", "text": "Использование современных методов", "option_values": [1.24, 1.1, 1, 0.91, 0.82], "reversed_colors": False},
+					{"id": "TOOL", "text": "Использование программных инструментов", "option_values": [1.24, 1.1, 1, 0.91, 0.82], "reversed_colors": False},
+					{"id": "SCED", "text": "Требуемые сроки разработки", "option_values": [1.23, 1.08, 1, 1.04, 1.1], "reversed_colors": False},
 				] %}
 					{% include "card-form.html" %}
 				{% endwith %}
 				{% with title="Атрибуты персонала", input_groups=[
-					{"id": "ACAP", "text" :"Способности аналитика", "option_values": [1.46, 1.19, 1, 0.86, 0.71], "reversed_color": False},
-					{"id": "AEXP", "text" :"Знание приложений", "option_values": [1.29, 1.15, 1, 0.91, 0.82], "reversed_color": False},
-					{"id": "PCAP", "text" :"Способности программиста", "option_values": [1.42, 1.17, 1, 0.86, 0.7], "reversed_color": False},
-					{"id": "VEXP", "text" :"Знание виртуальной машины", "option_values": [1.21, 1.1, 1, 0.9, 0], "reversed_color": False},
-					{"id": "LEXP", "text" :"Знание языка программирования", "option_values": [1.14, 1.07, 1, 0.95, 0], "reversed_color": False},
+					{"id": "ACAP", "text" :"Способности аналитика", "option_values": [1.46, 1.19, 1, 0.86, 0.71], "reversed_colors": False},
+					{"id": "AEXP", "text" :"Знание приложений", "option_values": [1.29, 1.15, 1, 0.91, 0.82], "reversed_colors": False},
+					{"id": "PCAP", "text" :"Способности программиста", "option_values": [1.42, 1.17, 1, 0.86, 0.7], "reversed_colors": False},
+					{"id": "VEXP", "text" :"Знание виртуальной машины", "option_values": [1.21, 1.1, 1, 0.9, 0], "reversed_colors": False},
+					{"id": "LEXP", "text" :"Знание языка программирования", "option_values": [1.14, 1.07, 1, 0.95, 0], "reversed_colors": False},
 				] %}
 					{% include "card-form.html" %}
 				{% endwith %}

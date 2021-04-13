@@ -2,7 +2,7 @@
 	<div class="card-body">
 		<h5 class="card-title">{{ title }}</h5>
 		{% for input_group in input_groups %}
-			{% with id=input_group.id, text=input_group.text, option_values=input_group.option_values, reversed_color=input_group.reversed_color %}
+			{% with id=input_group.id, text=input_group.text, option_values=input_group.option_values, reversed_colors=input_group.reversed_colors %}
 				{% include "input-group.html" %}
 			{% endwith %}
 		{% endfor %}
