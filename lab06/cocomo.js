@@ -1,6 +1,6 @@
 'use strict';
 
-let myChart1, myChart2;
+let chart1, chart2;
 let nLabels = 0, nTables = 0;
 
 const setUpCharts = () => {
@@ -21,20 +21,20 @@ const setUpCharts = () => {
 		});
 	};
 
-	myChart1 = createChart('myChartPM');
-	myChart2 = createChart('myChartTM');
-}
+	chart1 = createChart('chartPM');
+	chart2 = createChart('chartTM');
+};
 
 const clearCharts = () => {
-	myChart1.destroy();
-	myChart2.destroy();
-}
+	chart1.destroy();
+	chart2.destroy();
+};
 
 const randomRgba = () => {
 	const maxIntensity = 200;
 	const randomInt = () => Math.round(Math.random() * maxIntensity);
 	return `rgba(${randomInt()}, ${randomInt()}, ${randomInt()}, 1)`;
-}
+};
 
 class Model {
 	constructor() {
@@ -122,11 +122,11 @@ class Model {
 				borderColor: [color],
 				borderWidth: 2,
 			};
-		}
+		};
 		const dataset1 = createDataset(this.pmarray);
 		const dataset2 = createDataset(this.tmarray);
-		addData(myChart1, dataset1);
-		addData(myChart2, dataset2);
+		addData(chart1, dataset1);
+		addData(chart2, dataset2);
 		document.getElementById('chart_labels').innerHTML += this.formLabel();
 	}
 
@@ -157,13 +157,13 @@ class Model {
 			title: `Таблица ${nTables}.1 — Распределение работ и времени по стадиям жизненного цикла`,
 			head: ['Вид деятельности', 'Трудозатраты (чм)', 'Время (м)', 'Кол-во сотрудников (Work/Time)'],
 			data: [['Планирование и определение требований', 0.08 * this.PM, 0.36 * this.TM, Math.round(0.08 * this.PM / (0.36 * this.TM))],
-				   ['Проектирование продукта', 0.18 * this.PM, 0.36 * this.TM, Math.round(0.18 * this.PM / (0.36 * this.TM))],
-				   ['Детальное проектирование', 0.25 * this.PM, 0.18 * this.TM, Math.round(0.25 * this.PM / (0.18 * this.TM))],
-				   ['Кодирование и тестирование отдельных модулей', 0.26 * this.PM, 0.18 * this.TM, Math.round(0.26 * this.PM / (0.18 * this.TM))],
-				   ['Интеграция и тестирование', 0.31 * this.PM, 0.28 * this.TM, Math.round(0.31 * this.PM / (0.28 * this.TM))],
-				   ['Итого', (0.08 + 0.18 + 0.25 + 0.26 + 0.31) * this.PM, (0.36 + 0.36 + 0.18 + 0.18 + 0.28) * this.TM, '']],
-					// ['Итого', (0.08 + 0.18 + 0.25 + 0.26 + 0.31) * this.PM, (0.36 + 0.36 + 0.18 + 0.18 + 0.28) * this.TM, Math.round((0.08 + 0.18 + 0.25 + 0.26 + 0.31) * this.PM / ((0.36 + 0.36 + 0.18 + 0.18 + 0.28) * this.TM))]],
-		}
+			       ['Проектирование продукта', 0.18 * this.PM, 0.36 * this.TM, Math.round(0.18 * this.PM / (0.36 * this.TM))],
+			       ['Детальное проектирование', 0.25 * this.PM, 0.18 * this.TM, Math.round(0.25 * this.PM / (0.18 * this.TM))],
+			       ['Кодирование и тестирование отдельных модулей', 0.26 * this.PM, 0.18 * this.TM, Math.round(0.26 * this.PM / (0.18 * this.TM))],
+			       ['Интеграция и тестирование', 0.31 * this.PM, 0.28 * this.TM, Math.round(0.31 * this.PM / (0.28 * this.TM))],
+			       ['Итого', (0.08 + 0.18 + 0.25 + 0.26 + 0.31) * this.PM, (0.36 + 0.36 + 0.18 + 0.18 + 0.28) * this.TM, '']],
+			    // ['Итого', (0.08 + 0.18 + 0.25 + 0.26 + 0.31) * this.PM, (0.36 + 0.36 + 0.18 + 0.18 + 0.28) * this.TM, Math.round((0.08 + 0.18 + 0.25 + 0.26 + 0.31) * this.PM / ((0.36 + 0.36 + 0.18 + 0.18 + 0.28) * this.TM))]],
+		};
 		const table1 = tableCreate(tableObj1);
 
 		for (let i = 0; i < 5; ++i) {
@@ -172,16 +172,16 @@ class Model {
 		const tableObj2 = {
 			title: `Таблица ${nTables}.2 — Предположительный бюджет`,
 			data: [['Анализ требований (4%)', Math.round(0.04 * budget)],
-					['Проектирование продукта (12%)', Math.round(0.12 * budget)],
-					['Программирование (44%)', Math.round(0.44 * budget)],
-					['Тестирование (6%)', Math.round(0.06 * budget)],
-					['Верификация и аттестация (14%)', Math.round(0.14 * budget)],
-					['Канцелярия проекта (7%)', Math.round( 0.7 * budget)],
-					['Управление конфигурацией и обеспечение качества (7%)', Math.round(0.07 * budget)],
-					['Создание руководств (6%)', Math.round(0.06 * budget)],
-					['Непредвиденные риски(+20%)', Math.round(0.20 * budget)],
-					['Итого', Math.round(1.2 * budget)]],
-		}
+			       ['Проектирование продукта (12%)', Math.round(0.12 * budget)],
+			       ['Программирование (44%)', Math.round(0.44 * budget)],
+			       ['Тестирование (6%)', Math.round(0.06 * budget)],
+			       ['Верификация и аттестация (14%)', Math.round(0.14 * budget)],
+			       ['Канцелярия проекта (7%)', Math.round( 0.7 * budget)],
+			       ['Управление конфигурацией и обеспечение качества (7%)', Math.round(0.07 * budget)],
+			       ['Создание руководств (6%)', Math.round(0.06 * budget)],
+			       ['Непредвиденные риски(+20%)', Math.round(0.20 * budget)],
+			       ['Итого', Math.round(1.2 * budget)]],
+		};
 		const table2 = tableCreate(tableObj2);
 
 		const div = document.getElementById('result');
@@ -195,7 +195,7 @@ class Model {
 
 const tableCreate = tableObj => {
 	const div = document.createElement('div');
-	div.classList.add(tableObj.hasOwnProperty('head') ? 'col-7' : 'col');
+	div.classList.add(Object.prototype.hasOwnProperty.call(tableObj,'head') ? 'col-7' : 'col');
 
 	const tableTitle = document.createElement('h4');
 	tableTitle.innerHTML = tableObj.title;
@@ -203,7 +203,7 @@ const tableCreate = tableObj => {
 	const table = document.createElement('table');
 	['table', 'table-hover'].forEach(className => table.classList.add(className));
 
-	if (tableObj.hasOwnProperty('head')) {
+	if (Object.prototype.hasOwnProperty.call(tableObj,'head')) {
 		const thead = document.createElement('thead');
 		const tr = document.createElement('tr');
 		for (let i = 0; i < tableObj.head.length; ++i) {
@@ -233,21 +233,21 @@ const tableCreate = tableObj => {
 	div.appendChild(table);
 
 	return div;
-}
+};
 
 const addData = (chart, dataset) => {
-    chart.data.datasets.push(dataset);
-    chart.update();
-}
+	chart.data.datasets.push(dataset);
+	chart.update();
+};
 
-function calculate() {
+const calculate = () => {
 	const model = new Model();
 	model.insertParams();
 	model.calculate();
 	model.drawChart();
-}
+};
 
-function clearAll() {
+const clearAll = () => {
 	nLabels = nTables = 0;
 	clearCharts();
 	setUpCharts();
@@ -263,7 +263,7 @@ function clearAll() {
 	document.querySelectorAll('.card select').forEach(element => clearSelect(element, '1'));
 	clearSelect(document.getElementById('formula'), '1');
 	clearSelect(document.getElementById('change'), 'nothing');
-}
+};
 
 const changeColor = element => {
 	const labels = ['Очень низкий', 'Низкий', 'Номинальный', 'Высокий', 'Очень высокий'];
@@ -271,4 +271,6 @@ const changeColor = element => {
 	const selectedIndex = labels.indexOf(element.options[element.selectedIndex].text);
 	const colorIndex = element.classList.contains('reversed-colors') ? colors.length - 1 - selectedIndex : selectedIndex;
 	element.style.backgroundColor = colors[colorIndex];
-}
+};
+
+window.onload = setUpCharts;
