@@ -26,8 +26,8 @@ const setUpCharts = () => {
 };
 
 const clearCharts = () => {
-	chart1.destroy();
-	chart2.destroy();
+	chart1 && chart1.destroy();
+	chart2 && chart2.destroy();
 };
 
 const randomRgba = () => {
@@ -152,7 +152,13 @@ class Model {
 		++nTables;
 
 		let budget = 0;
-		const prices = [100000, 192000, (140000 + 150000) / 2, (120000 + 100000) / 2, (120000 + 100000) / 2];
+		const PRICE_A = parseFloat(document.getElementById('PRICE_A').value);
+		const PRICE_B = parseFloat(document.getElementById('PRICE_B').value);
+		const PRICE_C = parseFloat(document.getElementById('PRICE_C').value);
+		const PRICE_D = parseFloat(document.getElementById('PRICE_D').value);
+		const PRICE_E = parseFloat(document.getElementById('PRICE_E').value);
+		const PRICE_F = parseFloat(document.getElementById('PRICE_F').value);
+		const prices = [PRICE_A, PRICE_B, (PRICE_C + PRICE_D) / 2, (PRICE_E + PRICE_F) / 2, (PRICE_E + PRICE_F) / 2];
 		const tableObj1 = {
 			title: `Таблица ${nTables}.1 — Распределение работ и времени по стадиям жизненного цикла`,
 			head: ['Вид деятельности', 'Трудозатраты (чм)', 'Время (м)', 'Кол-во сотрудников (Work/Time)'],
@@ -267,10 +273,27 @@ const clearAll = () => {
 
 const changeColor = element => {
 	const labels = ['Очень низкий', 'Низкий', 'Номинальный', 'Высокий', 'Очень высокий'];
-	const colors = ['rgb(255, 87, 87)', 'rgb(255, 126, 87)', /* 'rgb(255, 216, 87)' */ 'rgb(255, 255, 255)', 'rgb(177, 255, 87)', 'rgb(87, 255, 95)']
+	const colors = ['rgb(255, 87, 87)', 'rgb(255, 126, 87)', /* 'rgb(255, 216, 87)' */ 'rgb(255, 255, 255)', 'rgb(177, 255, 87)', 'rgb(87, 255, 95)'];
 	const selectedIndex = labels.indexOf(element.options[element.selectedIndex].text);
 	const colorIndex = element.classList.contains('reversed-colors') ? colors.length - 1 - selectedIndex : selectedIndex;
 	element.style.backgroundColor = colors[colorIndex];
 };
 
-window.onload = setUpCharts;
+window.onload = () => {
+	clearAll();
+
+	document.querySelectorAll('select').forEach(element => element.addEventListener('change', event => {
+		event.preventDefault();
+		changeColor(event.target);
+	}));
+
+	document.querySelectorAll('.js-button-calculate').forEach(element => element.addEventListener('click', event => {
+		event.preventDefault();
+		calculate();
+	}));
+
+	document.querySelectorAll('.js-button-clear').forEach(element => element.addEventListener('click', event => {
+		event.preventDefault();
+		clearAll();
+	}));
+};

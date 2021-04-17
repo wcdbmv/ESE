@@ -1,0 +1,8 @@
+{% extends "card-form.html" %}
+{% block input_groups %}
+	{% for input_group in input_groups %}
+		{% with id=input_group.id, text=input_group.text, value=input_group.value %}
+			{% include "input-group-number.html" %}
+		{% endwith %}
+	{% endfor %}
+{% endblock %}

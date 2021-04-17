@@ -1,17 +1,6 @@
 <div class="input-group form-group mb-2">
 	<label class="input-group-text bg-primary text-light" for="{{ id }}">{{ id }}</label>
+	{% block between %}{% endblock %}
 	<label class="input-group-text" for="{{ id }}">{{ text }}</label>
-	{% with reversed_colors_class = "reversed-colors" if reversed_colors else "" %}
-		<select onchange="changeColor(this)" class="form-select {{ reversed_colors_class }}" id="{{ id }}">
-	{% endwith %}
-	{% with labels = ["Очень низкий", "Низкий", "Номинальный", "Высокий", "Очень высокий"] %}
-		{% for option_value in option_values %}
-			{% if option_value > 0 %}
-				{% with selected = "selected" if option_value == 1 else "" %}
-					<option value="{{ option_value }}" {{ selected }}>{{ labels[loop.index0] }}</option>
-				{% endwith %}
-			{% endif %}
-		{% endfor %}
-	{% endwith %}
-	</select>
+	{% block after %}{% endblock %}
 </div>

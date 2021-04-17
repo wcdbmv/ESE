@@ -1,0 +1,16 @@
+{% extends "input-group.html" %}
+{% block after %}
+	{% with reversed_colors_class = "reversed-colors" if reversed_colors else "" %}
+		<select class="form-select {{ reversed_colors_class }}" id="{{ id }}">
+	{% endwith %}
+	{% with labels = ["Очень низкий", "Низкий", "Номинальный", "Высокий", "Очень высокий"] %}
+		{% for option_value in option_values %}
+			{% if option_value > 0 %}
+				{% with selected = "selected" if option_value == 1 else "" %}
+					<option value="{{ option_value }}" {{ selected }}>{{ labels[loop.index0] }}</option>
+				{% endwith %}
+			{% endif %}
+		{% endfor %}
+	{% endwith %}
+	</select>
+{% endblock %}

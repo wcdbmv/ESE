@@ -18,7 +18,7 @@
 					{"id": "DATA", "text": "Размер базы данных", "option_values": [0, 0.94, 1, 1.08, 1.16], "reversed_colors": True},
 					{"id": "CPLX", "text": "Сложность продукта", "option_values": [0.7, 0.85, 1, 1.08, 1.16], "reversed_colors": True},
 				] %}
-					{% include "card-form.html" %}
+					{% include "card-form-select.html" %}
 				{% endwith %}
 				{% with title="Атрибуты компьютера", input_groups=[
 					{"id": "TIME", "text": "Ограничение времени выполнения", "option_values": [0, 0, 1, 1.11, 1.5], "reversed_colors": True},
@@ -26,7 +26,17 @@
 					{"id": "VIRT", "text": "Изменчивость виртуальной машины", "option_values": [0, 0.87, 1, 1.15, 1.3], "reversed_colors": True},
 					{"id": "TURN", "text": "Время реакции компьютера", "option_values": [0, 0.87, 1, 1.15, 1.3], "reversed_colors": True},
 				] %}
-					{% include "card-form.html" %}
+					{% include "card-form-select.html" %}
+				{% endwith %}
+				{% with input_groups=[
+					{"id": "PRICE_A", "text": "Зарплата системного аналитика, ₽/м", "value": 100000},
+					{"id": "PRICE_B", "text": "Зарплата архитектора ПО, ₽/м", "value": 192000},
+					{"id": "PRICE_C", "text": "Зарплата главного разработчика, ₽/м", "value": 140000},
+					{"id": "PRICE_D", "text": "Зарплата продуктового менеджера, ₽/м", "value": 150000},
+					{"id": "PRICE_E", "text": "Зарплата разработчика, ₽/м", "value": 120000},
+					{"id": "PRICE_F", "text": "Зарплата QA-инженера, ₽/м", "value": 100000},
+				] %}
+					{% include "card-form-number.html" %}
 				{% endwith %}
 			</div>
 			<div class="col">
@@ -35,7 +45,7 @@
 					{"id": "TOOL", "text": "Использование программных инструментов", "option_values": [1.24, 1.1, 1, 0.91, 0.82], "reversed_colors": False},
 					{"id": "SCED", "text": "Требуемые сроки разработки", "option_values": [1.23, 1.08, 1, 1.04, 1.1], "reversed_colors": False},
 				] %}
-					{% include "card-form.html" %}
+					{% include "card-form-select.html" %}
 				{% endwith %}
 				{% with title="Атрибуты персонала", input_groups=[
 					{"id": "ACAP", "text" :"Способности аналитика", "option_values": [1.46, 1.19, 1, 0.86, 0.71], "reversed_colors": False},
@@ -44,12 +54,8 @@
 					{"id": "VEXP", "text" :"Знание виртуальной машины", "option_values": [1.21, 1.1, 1, 0.9, 0], "reversed_colors": False},
 					{"id": "LEXP", "text" :"Знание языка программирования", "option_values": [1.14, 1.07, 1, 0.95, 0], "reversed_colors": False},
 				] %}
-					{% include "card-form.html" %}
+					{% include "card-form-select.html" %}
 				{% endwith %}
-			</div>
-		</div>
-		<div class="row justify-content-md-center">
-			<div class="col col-6">
 				<div class="card shadow-sm mb-4">
 					<div class="card-body">
 						<div class="input-group form-group mb-2">
@@ -68,7 +74,7 @@
 						</div>
 						<div class="input-group form-group mb-2">
 							<label class="input-group-text bg-primary text-light" for="change">Изменять</label>
-							<select onchange="changeColor(this)" class="form-select" id="change">
+							<select class="form-select" id="change">
 								<option selected value="nothing">ничего</option>
 								<option value="RELY">RELY</option>
 								<option value="DATA">DATA</option>
@@ -92,8 +98,8 @@
 							<label class="input-group-text" for="change">Остальное зафиксировать</label>
 						</div>
 						<div class="d-flex justify-content-center">
-							<button type="button" class="btn btn-outline-success btn-md mr-4" onclick="calculate()">Рассчитать</button>
-							<button type="button" class="btn btn-outline-dark btn-md" onclick="clearAll()">Очистить</button>
+							<button type="button" class="btn btn-outline-success btn-md mr-4 js-button-calculate">Рассчитать</button>
+							<button type="button" class="btn btn-outline-dark btn-md js-button-clear">Очистить</button>
 						</div>
 					</div>
 				</div>
