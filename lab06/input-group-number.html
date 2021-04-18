@@ -1,0 +1,4 @@
+{% extends "input-group.html" %}
+{% block after %}
+	<input type="number" min="0" max="1000000" step="1000" class="form-control" id="{{ id }}" value="{{ value }}">
+{% endblock %}

@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+
+	<title>COCOMO</title>
+</head>
+<body>
+	<div class="mx-auto container">
+		<div class="row">
+			<div class="col">
+				{% with title="Атрибуты программного продукта", input_groups=[
+					{"id": "RELY", "text": "Требуемая надёжность", "option_values": [0.75, 0.86, 1, 1.15, 1.4], "reversed_colors": True},
+					{"id": "DATA", "text": "Размер базы данных", "option_values": [0, 0.94, 1, 1.08, 1.16], "reversed_colors": True},
+					{"id": "CPLX", "text": "Сложность продукта", "option_values": [0.7, 0.85, 1, 1.08, 1.16], "reversed_colors": True},
+				] %}
+					{% include "card-form-select.html" %}
+				{% endwith %}
+				{% with title="Атрибуты компьютера", input_groups=[
+					{"id": "TIME", "text": "Ограничение времени выполнения", "option_values": [0, 0, 1, 1.11, 1.5], "reversed_colors": True},
+					{"id": "STOR", "text": "Ограничение объема основной памяти", "option_values": [0, 0, 1, 1.11, 1.5], "reversed_colors": True},
+					{"id": "VIRT", "text": "Изменчивость виртуальной машины", "option_values": [0, 0.87, 1, 1.15, 1.3], "reversed_colors": True},
+					{"id": "TURN", "text": "Время реакции компьютера", "option_values": [0, 0.87, 1, 1.15, 1.3], "reversed_colors": True},
+				] %}
+					{% include "card-form-select.html" %}
+				{% endwith %}
+				{% with input_groups=[
+					{"id": "PRICE_A", "text": "Зарплата системного аналитика, ₽/м", "value": 100000},
+					{"id": "PRICE_B", "text": "Зарплата архитектора ПО, ₽/м", "value": 192000},
+					{"id": "PRICE_C", "text": "Зарплата главного разработчика, ₽/м", "value": 140000},
+					{"id": "PRICE_D", "text": "Зарплата продуктового менеджера, ₽/м", "value": 150000},
+					{"id": "PRICE_E", "text": "Зарплата разработчика, ₽/м", "value": 120000},
+					{"id": "PRICE_F", "text": "Зарплата QA-инженера, ₽/м", "value": 100000},
+				] %}
+					{% include "card-form-number.html" %}
+				{% endwith %}
+			</div>
+			<div class="col">
+				{% with title="Атрибуты проекта", input_groups=[
+					{"id": "MODP", "text": "Использование современных методов", "option_values": [1.24, 1.1, 1, 0.91, 0.82], "reversed_colors": False},
+					{"id": "TOOL", "text": "Использование программных инструментов", "option_values": [1.24, 1.1, 1, 0.91, 0.82], "reversed_colors": False},
+					{"id": "SCED", "text": "Требуемые сроки разработки", "option_values": [1.23, 1.08, 1, 1.04, 1.1], "reversed_colors": False},
+				] %}
+					{% include "card-form-select.html" %}
+				{% endwith %}
+				{% with title="Атрибуты персонала", input_groups=[
+					{"id": "ACAP", "text" :"Способности аналитика", "option_values": [1.46, 1.19, 1, 0.86, 0.71], "reversed_colors": False},
+					{"id": "AEXP", "text" :"Знание приложений", "option_values": [1.29, 1.15, 1, 0.91, 0.82], "reversed_colors": False},
+					{"id": "PCAP", "text" :"Способности программиста", "option_values": [1.42, 1.17, 1, 0.86, 0.7], "reversed_colors": False},
+					{"id": "VEXP", "text" :"Знание виртуальной машины", "option_values": [1.21, 1.1, 1, 0.9, 0], "reversed_colors": False},
+					{"id": "LEXP", "text" :"Знание языка программирования", "option_values": [1.14, 1.07, 1, 0.95, 0], "reversed_colors": False},
+				] %}
+					{% include "card-form-select.html" %}
+				{% endwith %}
+
+				{% include "card-form-button.html" %}
+			</div>
+		</div>
+	</div>
+
+	<div id="result" class="mx-auto container">
+		<div class="canvas">
+			<h6>PM трудоемкость проекта</h6>
+			<canvas id="chartPM" width="550" height="450"></canvas>
+		</div>
+		<div class="canvas">
+			<h6>TM время разработки проекта</h6>
+			<canvas id="chartTM" width="550" height="450"></canvas>
+		</div>
+		<p id="chart_labels"></p>
+	</div>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+	<script src="cocomo.js"></script>
+</body>
+</html>

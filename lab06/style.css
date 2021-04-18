@@ -1,0 +1,20 @@
+body {
+	margin-top: 20px;
+}
+
+.card .input-group-text.bg-primary {
+	width: 95px;
+}
+
+.input-group-text.bg-primary {
+	width: 94px;
+}
+
+.input-group-text + .input-group-text {
+	width: 342px;
+}
+
+.canvas {
+	margin-top: 15px;
+	display : inline-block;
+}
