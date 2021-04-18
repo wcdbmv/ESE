@@ -1,0 +1,40 @@
+{% extends "card-form.html" %}
+{% block input_groups %}
+	{% with id="formula", text="для оценки основных работ и сроков", labels=["Обычный", "Промежуточный", "Встроенный"], option_values=[1, 2, 3] %}
+		{% include "input-group-select.html" %}
+	{% endwith %}
+	<div class="input-group form-group mb-2">
+		<label class="input-group-text bg-primary text-light" for="SIZE">SIZE</label>
+		<input type="text" class="form-control" id="SIZE" value="100">
+		<span class="input-group-text">KLOC</span>
+	</div>
+	<div class="input-group form-group mb-2">
+		<label class="input-group-text bg-primary text-light" for="change">Изменять</label>
+		<select class="form-select" id="change">
+			<option selected value="nothing">ничего</option>
+			<option value="RELY">RELY</option>
+			<option value="DATA">DATA</option>
+			<option value="CPLX">CPLX</option>
+
+			<option value="TIME">TIME</option>
+			<option value="STOR">STOR</option>
+			<option value="VIRT">VIRT</option>
+			<option value="TURN">TURN</option>
+
+			<option value="MODP">MODP</option>
+			<option value="TOOL">TOOL</option>
+			<option value="SCED">SCED</option>
+
+			<option value="ACAP">ACAP</option>
+			<option value="AEXP">AEXP</option>
+			<option value="PCAP">PCAP</option>
+			<option value="VEXP">VEXP</option>
+			<option value="LEXP">LEXP</option>
+		</select>
+		<label class="input-group-text" for="change">Остальное зафиксировать</label>
+	</div>
+	<div class="d-flex justify-content-center">
+		<button type="button" class="btn btn-outline-success btn-md mr-4 js-button-calculate">Рассчитать</button>
+		<button type="button" class="btn btn-outline-dark btn-md js-button-clear">Очистить</button>
+	</div>
+{% endblock %}
