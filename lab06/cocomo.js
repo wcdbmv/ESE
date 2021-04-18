@@ -3,6 +3,8 @@
 let chart1, chart2;
 let nLabels = 0, nTables = 0;
 
+const STANDARD_PRICES = [100000, 192000, 140000, 150000, 120000, 100000];
+
 const setUpCharts = () => {
 	const createChart = elementId => {
 		const context = document.getElementById(elementId).getContext('2d');
@@ -152,13 +154,8 @@ class Model {
 		++nTables;
 
 		let budget = 0;
-		const PRICE_A = parseFloat(document.getElementById('PRICE_A').value);
-		const PRICE_B = parseFloat(document.getElementById('PRICE_B').value);
-		const PRICE_C = parseFloat(document.getElementById('PRICE_C').value);
-		const PRICE_D = parseFloat(document.getElementById('PRICE_D').value);
-		const PRICE_E = parseFloat(document.getElementById('PRICE_E').value);
-		const PRICE_F = parseFloat(document.getElementById('PRICE_F').value);
-		const prices = [PRICE_A, PRICE_B, (PRICE_C + PRICE_D) / 2, (PRICE_E + PRICE_F) / 2, (PRICE_E + PRICE_F) / 2];
+		const PRICES = ['A', 'B', 'C', 'D', 'E', 'F'].map(letter => parseFloat(document.getElementById(`PRICE_${letter}`).value));
+		const prices = [PRICES[0], PRICES[1], (PRICES[2] + PRICES[3]) / 2, (PRICES[4] + PRICES[5]) / 2, (PRICES[4] + PRICES[5]) / 2];
 		const tableObj1 = {
 			title: `Таблица ${nTables}.1 — Распределение работ и времени по стадиям жизненного цикла`,
 			head: ['Вид деятельности', 'Трудозатраты (чм)', 'Время (м)', 'Кол-во сотрудников (Work/Time)'],
@@ -269,6 +266,11 @@ const clearAll = () => {
 	document.querySelectorAll('.card select').forEach(element => clearSelect(element, '1'));
 	clearSelect(document.getElementById('formula'), '1');
 	clearSelect(document.getElementById('change'), 'nothing');
+
+	document.getElementById('SIZE').value = 100;
+	[0, 1, 2, 3, 4, 5].forEach(i => {
+		document.getElementById(`PRICE_${String.fromCharCode('A'.charCodeAt() + i)}`).value = STANDARD_PRICES[i];
+	});
 };
 
 const changeColor = element => {
