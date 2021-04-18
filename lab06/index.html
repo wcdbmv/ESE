@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8"/>
+		<meta content="width=device-width, initial-scale=1" name="viewport"/>
+		<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" rel="stylesheet"/>
+		<link href="style.css" rel="stylesheet"/>
+		<title>
+			COCOMO
+		</title>
+	</head>
+	<body>
+		<div class="mx-auto container">
+			<div class="row">
+				<div class="col">
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<h5 class="card-title">
+								Атрибуты программного продукта
+							</h5>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="RELY">
+									RELY
+								</label>
+								<label class="input-group-text" for="RELY">
+									Требуемая надёжность
+								</label>
+								<select class="form-select reversed-colors" id="RELY">
+									<option value="0.75">
+										Очень низкий
+									</option>
+									<option value="0.86">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="1.15">
+										Высокий
+									</option>
+									<option value="1.4">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="DATA">
+									DATA
+								</label>
+								<label class="input-group-text" for="DATA">
+									Размер базы данных
+								</label>
+								<select class="form-select reversed-colors" id="DATA">
+									<option value="0.94">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="1.08">
+										Высокий
+									</option>
+									<option value="1.16">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="CPLX">
+									CPLX
+								</label>
+								<label class="input-group-text" for="CPLX">
+									Сложность продукта
+								</label>
+								<select class="form-select reversed-colors" id="CPLX">
+									<option value="0.7">
+										Очень низкий
+									</option>
+									<option value="0.85">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="1.08">
+										Высокий
+									</option>
+									<option value="1.16">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<h5 class="card-title">
+								Атрибуты компьютера
+							</h5>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="TIME">
+									TIME
+								</label>
+								<label class="input-group-text" for="TIME">
+									Ограничение времени выполнения
+								</label>
+								<select class="form-select reversed-colors" id="TIME">
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="1.11">
+										Высокий
+									</option>
+									<option value="1.5">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="STOR">
+									STOR
+								</label>
+								<label class="input-group-text" for="STOR">
+									Ограничение объема основной памяти
+								</label>
+								<select class="form-select reversed-colors" id="STOR">
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="1.11">
+										Высокий
+									</option>
+									<option value="1.5">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="VIRT">
+									VIRT
+								</label>
+								<label class="input-group-text" for="VIRT">
+									Изменчивость виртуальной машины
+								</label>
+								<select class="form-select reversed-colors" id="VIRT">
+									<option value="0.87">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="1.15">
+										Высокий
+									</option>
+									<option value="1.3">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="TURN">
+									TURN
+								</label>
+								<label class="input-group-text" for="TURN">
+									Время реакции компьютера
+								</label>
+								<select class="form-select reversed-colors" id="TURN">
+									<option value="0.87">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="1.15">
+										Высокий
+									</option>
+									<option value="1.3">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PRICE_A">
+									PRICE_A
+								</label>
+								<label class="input-group-text" for="PRICE_A">
+									Зарплата системного аналитика, ₽/м
+								</label>
+								<input class="form-control" id="PRICE_A" max="1000000" min="0" step="1000" type="number" value="100000"/>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PRICE_B">
+									PRICE_B
+								</label>
+								<label class="input-group-text" for="PRICE_B">
+									Зарплата архитектора ПО, ₽/м
+								</label>
+								<input class="form-control" id="PRICE_B" max="1000000" min="0" step="1000" type="number" value="192000"/>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PRICE_C">
+									PRICE_C
+								</label>
+								<label class="input-group-text" for="PRICE_C">
+									Зарплата главного разработчика, ₽/м
+								</label>
+								<input class="form-control" id="PRICE_C" max="1000000" min="0" step="1000" type="number" value="140000"/>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PRICE_D">
+									PRICE_D
+								</label>
+								<label class="input-group-text" for="PRICE_D">
+									Зарплата продуктового менеджера, ₽/м
+								</label>
+								<input class="form-control" id="PRICE_D" max="1000000" min="0" step="1000" type="number" value="150000"/>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PRICE_E">
+									PRICE_E
+								</label>
+								<label class="input-group-text" for="PRICE_E">
+									Зарплата разработчика, ₽/м
+								</label>
+								<input class="form-control" id="PRICE_E" max="1000000" min="0" step="1000" type="number" value="120000"/>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PRICE_F">
+									PRICE_F
+								</label>
+								<label class="input-group-text" for="PRICE_F">
+									Зарплата QA-инженера, ₽/м
+								</label>
+								<input class="form-control" id="PRICE_F" max="1000000" min="0" step="1000" type="number" value="100000"/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col">
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<h5 class="card-title">
+								Атрибуты проекта
+							</h5>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="MODP">
+									MODP
+								</label>
+								<label class="input-group-text" for="MODP">
+									Использование современных методов
+								</label>
+								<select class="form-select" id="MODP">
+									<option value="1.24">
+										Очень низкий
+									</option>
+									<option value="1.1">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="0.91">
+										Высокий
+									</option>
+									<option value="0.82">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="TOOL">
+									TOOL
+								</label>
+								<label class="input-group-text" for="TOOL">
+									Использование программных инструментов
+								</label>
+								<select class="form-select" id="TOOL">
+									<option value="1.24">
+										Очень низкий
+									</option>
+									<option value="1.1">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="0.91">
+										Высокий
+									</option>
+									<option value="0.82">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="SCED">
+									SCED
+								</label>
+								<label class="input-group-text" for="SCED">
+									Требуемые сроки разработки
+								</label>
+								<select class="form-select" id="SCED">
+									<option value="1.23">
+										Очень низкий
+									</option>
+									<option value="1.08">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="1.04">
+										Высокий
+									</option>
+									<option value="1.1">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<h5 class="card-title">
+								Атрибуты персонала
+							</h5>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="ACAP">
+									ACAP
+								</label>
+								<label class="input-group-text" for="ACAP">
+									Способности аналитика
+								</label>
+								<select class="form-select" id="ACAP">
+									<option value="1.46">
+										Очень низкий
+									</option>
+									<option value="1.19">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="0.86">
+										Высокий
+									</option>
+									<option value="0.71">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="AEXP">
+									AEXP
+								</label>
+								<label class="input-group-text" for="AEXP">
+									Знание приложений
+								</label>
+								<select class="form-select" id="AEXP">
+									<option value="1.29">
+										Очень низкий
+									</option>
+									<option value="1.15">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="0.91">
+										Высокий
+									</option>
+									<option value="0.82">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PCAP">
+									PCAP
+								</label>
+								<label class="input-group-text" for="PCAP">
+									Способности программиста
+								</label>
+								<select class="form-select" id="PCAP">
+									<option value="1.42">
+										Очень низкий
+									</option>
+									<option value="1.17">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="0.86">
+										Высокий
+									</option>
+									<option value="0.7">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="VEXP">
+									VEXP
+								</label>
+								<label class="input-group-text" for="VEXP">
+									Знание виртуальной машины
+								</label>
+								<select class="form-select" id="VEXP">
+									<option value="1.21">
+										Очень низкий
+									</option>
+									<option value="1.1">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="0.9">
+										Высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="LEXP">
+									LEXP
+								</label>
+								<label class="input-group-text" for="LEXP">
+									Знание языка программирования
+								</label>
+								<select class="form-select" id="LEXP">
+									<option value="1.14">
+										Очень низкий
+									</option>
+									<option value="1.07">
+										Низкий
+									</option>
+									<option selected="" value="1">
+										Номинальный
+									</option>
+									<option value="0.95">
+										Высокий
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="formula">
+									formula
+								</label>
+								<label class="input-group-text" for="formula">
+									для оценки основных работ и сроков
+								</label>
+								<select class="form-select" id="formula">
+									<option selected="" value="1">
+										Обычный
+									</option>
+									<option value="2">
+										Промежуточный
+									</option>
+									<option value="3">
+										Встроенный
+									</option>
+								</select>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="SIZE">
+									SIZE
+								</label>
+								<input class="form-control" id="SIZE" max="1000000" min="0" step="10" type="number" value="100"/>
+								<label class="input-group-text" for="SIZE">
+									KLOC
+								</label>
+							</div>
+							<div class="input-group form-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="change">
+									Изменять
+								</label>
+								<select class="form-select" id="change">
+									<option selected="" value="nothing">
+										ничего
+									</option>
+									<option value="RELY">
+										RELY
+									</option>
+									<option value="DATA">
+										DATA
+									</option>
+									<option value="CPLX">
+										CPLX
+									</option>
+									<option value="TIME">
+										TIME
+									</option>
+									<option value="STOR">
+										STOR
+									</option>
+									<option value="VIRT">
+										VIRT
+									</option>
+									<option value="TURN">
+										TURN
+									</option>
+									<option value="MODP">
+										MODP
+									</option>
+									<option value="TOOL">
+										TOOL
+									</option>
+									<option value="SCED">
+										SCED
+									</option>
+									<option value="ACAP">
+										ACAP
+									</option>
+									<option value="AEXP">
+										AEXP
+									</option>
+									<option value="PCAP">
+										PCAP
+									</option>
+									<option value="VEXP">
+										VEXP
+									</option>
+									<option value="LEXP">
+										LEXP
+									</option>
+								</select>
+								<label class="input-group-text" for="change">
+									Остальное зафиксировать
+								</label>
+							</div>
+							<div class="d-flex justify-content-center">
+								<button class="btn btn-outline-success btn-md mr-4 js-button-calculate" type="button">
+									Рассчитать
+								</button>
+								<button class="btn btn-outline-dark btn-md js-button-clear" type="button">
+									Очистить
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="mx-auto container" id="result">
+			<div class="canvas">
+				<h6>
+					PM трудоемкость проекта
+				</h6>
+				<canvas height="450" id="chartPM" width="550">
+				</canvas>
+			</div>
+			<div class="canvas">
+				<h6>
+					TM время разработки проекта
+				</h6>
+				<canvas height="450" id="chartTM" width="550">
+				</canvas>
+			</div>
+			<p id="chart_labels">
+			</p>
+		</div>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.0.2/chart.min.js">
+		</script>
+		<script crossorigin="anonymous" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js">
+		</script>
+		<script src="cocomo.js">
+		</script>
+	</body>
+</html>
