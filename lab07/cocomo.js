@@ -203,97 +203,7 @@ const dict_lang = {
 	'prolog': 54,
 };
 
-const generate = () => {
-	console.log('hello');
-	console.log(Object.keys(dict_lang).length);
-	console.log(dict_lang[Object.keys(dict_lang)[1]]);
-	console.log(Object.keys(dict_lang)[1]);
-	for (let i = 0; i < Object.keys(dict_lang).length; ++i) {
-		console.log(`<option value="${dict_lang[Object.keys(dict_lang)[i]]}">${Object.keys(dict_lang)[i]}</option>`);
-		// id = model.p_factors_labels[i]
-		// name = model.p_factors_labels_meanings[i]
-		// v = model.p_factors_possible_values[i]
-		// console.log(`this.${id} = parseFloat(document.getElementById("${id}").value)`);
-		// console.log(
-		// `<div inputdata>
-		// 	<label for="${id}">${name} (${id})</label>
-		// 	<select name="${id}" id="${id}">
-		// 		<option value="${v[0][1]}">${v[0][0]}</option>
-		// 		<option value="${v[1][1]}">${v[1][0]}</option>
-		// 		<option value="${v[2][1]}">${v[2][0]}</option>
-		// 		<option value="${v[3][1]}">${v[3][0]}</option>
-		// 		<option value="${v[4][1]}">${v[4][0]}</option>
-		// 		<option value="${v[5][1]}">${v[5][0]}</option>
-		// </select>
-		// </div>`);
-
-		// id = model.Cocomo_labels[i];
-		// console.log(`this.${id} = parseFloat(document.getElementById("${id}").value)`);
-		// name = model.Cocomo_label_meanings[i];
-		// v = model.Cocomo_possible_values[i];
-		// console.log(
-		// `<div inputdata>
-		// 	<label for="${id}">${name} (${id})</label>
-		// 	<select name="${id}" id="${id}">
-		// 		<option value="${v[0]}">Очень низкий</option>
-		// 		<option value="${v[1]}">Низкий</option>
-		// 		<option value="${v[2]}">Номинальный</option>
-		// 		<option value="${v[3]}">Высокий</option>
-		// 		<option value="${v[4]}">Очень высокий</option>
-		// 		<option value="${v[5]}">Сверхвысокий</option>
-		// 	</select>
-		// </div>`)
-
-		// id = model.Fi_labels_eng[i];
-		// name = model.Fi_labels[i];
-		// console.log(
-		// `<div inputdata>
-		// 	<label for="${id}">${name}</label>
-		// 	<select name="${id}" id="${id}">
-		// 		<option value="0">нет влияния</option>
-		// 		<option value="1">случайное влияние</option>
-		// 		<option selected value="2">небольшое влияние</option>
-		// 		<option value="3">среднее влияние</option>
-		// 		<option value="4">существенное влияние</option>
-		// 		<option value="5">сильное влияние</option>
-		// 	</select>
-		// </div>`);
-
-		// console.log(`this.${id} = parseFloat(document.getElementById("${id}").value)`);
-	}
-};
-
-// generate()
-
-const setdata = () => {
-	const model = new Model();
-	model.insert_Fi_data();
-	model.insert_Cocomo_data();
-	model.insert_p_data();
-	console.log('Fi_values', model.Fi_values);
-	console.log('Cocomo values', model.Cocomo_values);
-	console.log('values for p', model.p_factors_values);
-
-	model.calculate_KLOC(79);
-	model.calculate_Cocomo();
-
-	const outputStr = `количество функциональных точек ${model.fp}<br>размер кода ${model.kloc} kloc<br>показатель степени${model.p}<br>
-	трудозатраты ${model.work} человеко-месяцев<br>время ${model.time} месяцев<br>количество работников ${model.workers}<br>бюджет ${model.budget}`;
-	console.log('fp', model.fp);
-	console.log('kloc', model.kloc);
-	console.log('p', model.p);
-	console.log('work', model.work);
-	console.log('time', model.time);
-	console.log('people', model.workers);
-	console.log('budget', model.budget);
-
-	const body = document.body;
-	const output = document.createElement('p');
-	output.innerHTML = outputStr;
-	body.appendChild(output);
-};
-
-const addlang = () => {
+const addLanguage = () => {
 	const langdiv = document.getElementById('langs');
 	const newlanguage = document.createElement('div');
 	newlanguage.innerHTML = `<div inputdata>
@@ -320,5 +230,60 @@ const addlang = () => {
 	</div>`;
 	langdiv.appendChild(newlanguage);
 	++number_of_languages;
+};
+
+const tableCreate = rows => {
+	const table = document.createElement('table');
+	['table', 'table-hover'].forEach(className => table.classList.add(className));
+
+	const tbody = document.createElement('tbody');
+	for (let row of rows) {
+		const tr = document.createElement('tr');
+
+		const th = document.createElement('th');
+		th.setAttribute('scope', 'row');
+		th.appendChild(document.createTextNode(row[0]));
+
+		const td = document.createElement('td');
+		td.appendChild(document.createTextNode(row[1]));
+
+		tr.appendChild(th);
+		tr.appendChild(td);
+		tbody.appendChild(tr);
+	}
+	table.appendChild(tbody);
+
+	return table;
+};
+
+const setData = () => {
+	const model = new Model();
+	model.insert_Fi_data();
+	model.insert_Cocomo_data();
+	model.insert_p_data();
+	console.log('Fi_values', model.Fi_values);
+	console.log('Cocomo values', model.Cocomo_values);
+	console.log('values for p', model.p_factors_values);
+
+	model.calculate_KLOC(79);
+	model.calculate_Cocomo();
+
+	const table = tableCreate([
+		['Количество функциональных точек', model.fp],
+		['Размер кода, KLOC', model.kloc],
+		['Показатель степени', model.p],
+		['Трудозатраты, чм', model.work],
+		['Время, м', model.time],
+		['Количество работников', model.workers],
+		['Бюджет', model.budget],
+	]);
+
+	const result = document.querySelector('.row:last-child .card-body');
+	result.appendChild(table);
+};
+
+const clearAll = () => {
+	const result = document.querySelector('.row:last-child .card-body');
+	result.innerHTML = '<h3 class="card-title">Результаты вычислений</h3>';
 };
 
