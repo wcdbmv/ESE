@@ -10,7 +10,11 @@ r = re.compile('^ +', re.MULTILINE)
 
 def prettify(html: str) -> str:
     soup = bs(html, 'html.parser')
-    return r.sub(lambda x: '\t' * len(x.group()), soup.prettify())
+    return r.sub(lambda x: '\t' * len(x.group()), soup.prettify(formatter='html5'))
+    #                                                                      html5
+    # this will work correctly with <option selected></option> for bs4 4.10.0
+    # the latest version for now is 4.9.3
+    # :(
 
 
 def main() -> None:

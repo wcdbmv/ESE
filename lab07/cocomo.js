@@ -185,50 +185,32 @@ class Model {
 	}
 }
 
-const dict_lang = {
-	'assembley': 320,
-	'c': 128,
-	'kobol': 196,
-	'fortran': 106,
-	'pascal': 90,
-	'c++': 53,
-	'java; c#': 53,
-	'sql': 13,
-	'js': 56,
-	'ada 95': 49,
-	'visual basic': 24,
-	'visual c++': 34,
-	'delphi': 29,
-	'perl': 21,
-	'prolog': 54,
-};
-
 const addLanguage = () => {
 	const langdiv = document.getElementById('langs');
-	const newlanguage = document.createElement('div');
-	newlanguage.innerHTML = `<div inputdata>
-	<label for="lang${number_of_languages}">яп: </label>
-	<select name="lang${number_of_languages}" id="lang${number_of_languages}">
-		<option value="320">assembley</option>
-		<option value="128">c</option>
-		<option value="196">kobol</option>
-		<option value="106">fortran</option>
-		<option value="90">pascal</option>
-		<option value="53">c++</option>
-		<option value="53">java; c#</option>
-		<option value="13">sql</option>
-		<option value="56">js</option>
-		<option value="49">ada 95</option>
-		<option value="24">visual basic</option>
-		<option value="34">visual c++</option>
-		<option value="29">delphi</option>
-		<option value="21">perl</option>
-		<option value="54">prolog</option>
-	</select>
-	<input id="lang${number_of_languages}prop" value="0">
-	<label for="lang${number_of_languages}prop">%</label>
-	</div>`;
-	langdiv.appendChild(newlanguage);
+	const div = document.createElement('div');
+	div.classList.add('input-group', 'mb-3');
+	div.innerHTML = `
+		<span class="input-group-text">Язык программирования</span>
+		<select class="form-select" id="lang${number_of_languages}">
+			<option selected value="320">assembley</option>
+			<option value="128">c</option>
+			<option value="196">kobol</option>
+			<option value="106">fortran</option>
+			<option value="90">pascal</option>
+			<option value="53">c++</option>
+			<option value="53">java; c#</option>
+			<option value="13">sql</option>
+			<option value="56">js</option>
+			<option value="49">ada 95</option>
+			<option value="24">visual basic</option>
+			<option value="34">visual c++</option>
+			<option value="29">delphi</option>
+			<option value="21">perl</option>
+			<option value="54">prolog</option>
+		</select>
+		<input class="form-control" id="lang${number_of_languages}prop" max="100" min="0" step="10" type="number" value="0">
+		<span class="input-group-text">%</span>`;
+	langdiv.appendChild(div);
 	++number_of_languages;
 };
 
@@ -285,5 +267,10 @@ const setData = () => {
 const clearAll = () => {
 	const result = document.querySelector('.row:last-child .card-body');
 	result.innerHTML = '<h3 class="card-title">Результаты вычислений</h3>';
+
+	number_of_languages = 0;
+	const langdiv = document.getElementById('langs');
+	langdiv.innerHTML = '';
+	addLanguage();
 };
 
