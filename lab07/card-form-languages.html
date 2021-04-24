@@ -1,0 +1,16 @@
+{% extends "card-form.html" %}
+{% block input_groups %}
+	{% with id="salary", text="Зарплата разработчика, ₽", value=100000, min=50000, max=500000, step=10000 %}
+		{% include "input-group-number.html" %}
+	{% endwith %}
+	<div id="langs">
+		{% with text="Язык программирования" %}
+			{% include "input-group-language.html" %}
+		{% endwith %}
+	</div>
+	<div class="d-flex justify-content-center">
+		<button type="button" class="btn btn-outline-secondary" onclick="addlang()">Добавить язык программирования</button>
+		<button type="button" class="btn btn-outline-success" onclick="setdata()">Рассчитать</button>
+		<button type="button" class="btn btn-outline-secondary" onclick="clear()">Очистить</button>
+	</div>
+{% endblock input_groups %}

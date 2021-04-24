@@ -153,7 +153,7 @@ class Model {
 	insert_Cocomo_data() {
 		this.Cocomo_labels.forEach(label => this[label] = parseFloatFromSelect(label));
 		this.Cocomo_values = this.Cocomo_labels.map(label => this[label]);
-		this.payment = parseFloatFromSelect('payment');
+		this.salary = parseFloatFromSelect('salary');
 	}
 
 	insert_p_data() {
@@ -181,7 +181,7 @@ class Model {
 		this.work = 2.45 * this.Cocomo_values.reduce(array_mult) * Math.pow(this.kloc, this.p);
 		this.time = 3.0 * Math.pow(this.work, 0.33 + 0.2 * (this.p - 1.01));
 		this.workers = Math.round(this.work / this.time);
-		this.budget = this.workers * this.payment * this.time;
+		this.budget = this.workers * this.salary * this.time;
 	}
 }
 

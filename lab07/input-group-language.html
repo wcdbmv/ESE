@@ -1,0 +1,14 @@
+{% extends "input-group.html" %}
+{% block input %}
+	{% with id="lang0",
+		selected_value=320,
+		option_values=[320, 128, 196, 106, 90, 53, 53, 13, 56, 49, 24, 34, 29, 21, 54],
+		option_texts=["assembley", "c", "kobol", "fortran", "pascal", "c++", "java; c#", "sql", "js", "ada 95", "visual basic", "visual c++", "delphi", "perl", "prolog"]
+	%}
+		{% include "form-select.html" %}
+	{% endwith %}
+	{% with id="lang0prop", value=0, min=0, max=100, step=10 %}
+		{% include "form-number.html" %}
+	{% endwith %}
+	<span class="input-group-text">%</span>
+{% endblock %}

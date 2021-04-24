@@ -1,0 +1,9 @@
+<select class="form-select" id="{{ id }}">
+	{% for option_value in option_values %}
+		{% if option_value is not none %}
+			{% with selected = 'selected="selected"' if option_value == selected_value else "" %}
+				<option value="{{ option_value }}" {{ selected }}>{{ option_texts[loop.index0] }}</option>
+			{% endwith %}
+		{% endif %}
+	{% endfor %}
+</select>
