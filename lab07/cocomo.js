@@ -309,7 +309,7 @@ const calculateACM = () => {
 	model.calculateApplicationCompositionModel();
 
 	const table = tableCreate({
-		title: 'Модель ранней разработки архитектуры',
+		title: 'Модель композиции приложения',
 		rows: [
 			['NOP', model.nop],
 			['Трудозатраты, чел.-мес.', model.work.toFixed(2)],
@@ -330,7 +330,7 @@ const calculateEAM = () => {
 	model.calculateEarlyArchitectureModel();
 
 	const table = tableCreate({
-		title: 'Модель композиции приложения',
+		title: 'Модель ранней разработки архитектуры',
 		rows: [
 			['Количество функциональных точек', model.FP.toFixed(2)],
 			['Размер кода, KLOC', model.KSLOC.toFixed(2)],
