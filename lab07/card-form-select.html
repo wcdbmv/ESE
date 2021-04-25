@@ -9,7 +9,16 @@
 			{% set ignore1 = input_group.update({"selected_value": 1}) %}
 			{% set ignore2 = input_group.update({"option_texts": ["Очень низкий", "Низкий", "Номинальный", "Высокий", "Очень высокий", "Сверхвысокий"]}) %}
 		{% endif %}
-		{% with id=input_group.id, text=input_group.text, selected_value=input_group.selected_value, option_values=input_group.option_values, option_texts=input_group.option_texts %}
+
+		{% set ignore = input_group.update({"include_pre_label": method.startswith("COCOMO")}) %}
+
+		{% with id=input_group.id,
+			text=input_group.text,
+			selected_value=input_group.selected_value,
+			option_values=input_group.option_values,
+			option_texts=input_group.option_texts,
+			include_pre_label=input_group.include_pre_label
+		%}
 			{% include "input-group-select.html" %}
 		{% endwith %}
 	{% endfor %}

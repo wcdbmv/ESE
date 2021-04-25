@@ -5,92 +5,106 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+	<link href="styles.css" rel="stylesheet">
 
 	<title>COCOMO II</title>
 </head>
 <body>
 	<div class="container">
 		<div class="row">
-			{% with method="FPA", title="Параметры для метода функциональных точек", input_groups=[
-				{"id": "Data_exchange", "text": "Обмен данными"},
-				{"id": "Distributed_processing", "text": "Распределенная обработка"},
-				{"id": "Performance", "text": "Производительность"},
-				{"id": "Operating_Limitations_on_Hardware_Resources", "text": "Эксплуатационные ограничения по аппаратным ресурсам"},
-				{"id": "Transactional_Load", "text": "Транзакционная нагрузка"},
-				{"id": "Intensity_of_User_Interaction", "text": "Интенсивность взаимодействия с пользователем (оперативный ввод данных)"},
-				{"id": "Ergonomics_Affecting_End_User_Efficiency", "text": "Эргономические характеристики, влияющие на эффективность работы конечных пользователей"},
-				{"id": "Online_update", "text": "Оперативное обновление"},
-				{"id": "Processing_complexity", "text": "Сложность обработки"},
-				{"id": "Reuse", "text": "Повторное использование"},
-				{"id": "Ease_of_installation", "text": "Легкость инсталляции"},
-				{"id": "Ease_of_use_administration", "text": "Легкость эксплуатации/администрирования"},
-				{"id": "Portability", "text": "Портируемость"},
-				{"id": "Flexibility", "text": "Гибкость"},
-			] %}
-				{% include "card-form-select.html" %}
-			{% endwith %}
+			<div class="col">
+				{% with method="FPA", title="Параметры для метода функциональных точек", input_groups=[
+					{"id": "Data_exchange", "text": "Передача данных"},
+					{"id": "Distributed_processing", "text": "Распределенная обработка"},
+					{"id": "Performance", "text": "Производительность"},
+					{"id": "Operating_Limitations_on_Hardware_Resources", "text": "Эксплуатационные ограничения"},
+					{"id": "Transactional_Load", "text": "Частота транзакций"},
+					{"id": "Intensity_of_User_Interaction", "text": "Оперативный ввод данных"},
+					{"id": "Ergonomics_Affecting_End_User_Efficiency", "text": "Эффективность работы конечных пользователей"},
+					{"id": "Online_update", "text": "Оперативное обновление"},
+					{"id": "Processing_complexity", "text": "Сложность обработки"},
+					{"id": "Reuse", "text": "Повторная используемость"},
+					{"id": "Ease_of_installation", "text": "Лёгкость инсталляции"},
+					{"id": "Ease_of_use_administration", "text": "Лёгкость эксплуатации"},
+					{"id": "Portability", "text": "Количество возможных установок на различных платформах"},
+					{"id": "Flexibility", "text": "Гибкость"},
+				] %}
+					{% include "card-form-select.html" %}
+				{% endwith %}
+			</div>
 		</div>
 		<div class="row">
-			{% with method="COCOMO", title="Параметры COCOMO", input_groups=[
-				{"option_values": [ 0.6, 0.83, 1, 1.33, 1.91, 2.72], "id": "RCPX", "text": "Надежность и уровень сложности разрабатываемой системы (RCPX)"},
-				{"option_values": [None, 0.95, 1, 1.07, 1.15, 1.24], "id": "RUSE", "text": "Повторное использование компонентов (RUSE)"},
-				{"option_values": [1.62, 1.26, 1, 0.83, 0.63,  0.5], "id": "PERS", "text": "Возможности персонала (PERS)"},
-				{"option_values": [1.33, 1.22, 1, 0.87, 0.74, 0.62], "id": "PREX", "text": "Опыт персонала (PREX)"},
-				{"option_values": [None, 0.87, 1, 1.29, 1.81, 2.61], "id": "PDIF", "text": "Сложность платформы разработки (PDIF)"},
-				{"option_values": [ 1.3,  1.1, 1, 0.87, 0.73, 0.62], "id": "FCIL", "text": "Средства поддержки (FCIL)"},
-				{"option_values": [1.43, 1.14, 1,    1,    1, None], "id": "SCED", "text": "График работ (SCED)"},
-			] %}
-				{% include "card-form-select.html" %}
-			{% endwith %}
-			{% with method="COCOMO II", title="Параметры для расчета показателя COCOMO II", input_groups=[
-				{"option_values": [6.2, 4.96, 3.72, 2.48, 1.24, 0], "selected_value": 3.72, "id": "PREC", "text": "Новизна проекта (PREC)", "option_texts": [
-					"Полное отсутствие прецедентов, полностью непредсказуемый проект",
-					"Почти полное отсутствие прецедентов, взначительной мере непредсказуемый проект",
-					"Наличие некоторого количества прецедентов",
-					"Общее знакомство с проектом",
-					"Значительное знакомство с проектом",
-					"Полное знакомство с проектом",
-				]},
-				{"option_values": [5.07, 4.05, 3.04, 2.03, 1.01, 0], "selected_value": 5.07, "id": "FLEX", "text": "Гибкость процесса разработки (FLEX)", "option_texts": [
-					"Точный, строгий процесс разработки",
-					"Случайные послабления в процессе",
-					"Некоторые послабления в процессе",
-					"Большей частью согласованный процесс",
-					"Некоторое согласование процесса",
-					"Заказчик определил только общие цели",
-				]},
-				{"option_values": [7, 5.65, 4.24, 2.83, 1.41, 0], "selected_value": 4.24, "id": "RESL", "text": "Разрешение рисков в архитектуре системы (RESL)", "option_texts": [
-					"Малое (20 %)",
-					"Некоторое (40 %)",
-					"Частое (60 %)",
-					"В целом (75 %)",
-					"Почти полное (90 %)",
-					"Полное (100%)",
-				]},
-				{"option_values": [5.48, 4.38, 3.29, 2.19, 1.1, 0], "selected_value": 1.1, "id": "TEAM", "text": "Сплоченность команды (TEAM)", "option_texts": [
-					"Сильно затрудненное взаимодействие",
-					"Несколько затрудненное взаимодействие",
-					"Некоторая согласованность",
-					"Повышенная согласованность",
-					"Высокая согласованность",
-					"Взаимодействие как в едином целом",
-				]},
-				{"option_values": [7, 6.24, 4.68, 1.12, 1.56, 0], "selected_value": 4.68, "id": "PMAT", "text": "Уровень зрелости процесса разработки (PMAT)", "option_texts": [
-					"Уровень 1 СММ",
-					"Уровень 1+ СММ",
-					"Уровень 2 СММ",
-					"Уровень 3 СММ",
-					"Уровень 7 СММ",
-					"Уровень 5 СММ",
-				]},
-			] %}
-				{% include "card-form-select.html" %}
-			{% endwith %}
+			<div class="col-lg-7">
+				{% with method="COCOMO", title="Параметры COCOMO", input_groups=[
+					{"option_values": [ 0.6, 0.83, 1, 1.33, 1.91, 2.72], "id": "RCPX", "text": "Надежность и уровень сложности разрабатываемой системы"},
+					{"option_values": [None, 0.95, 1, 1.07, 1.15, 1.24], "id": "RUSE", "text": "Повторное использование компонентов"},
+					{"option_values": [1.62, 1.26, 1, 0.83, 0.63,  0.5], "id": "PERS", "text": "Возможности персонала"},
+					{"option_values": [1.33, 1.22, 1, 0.87, 0.74, 0.62], "id": "PREX", "text": "Опыт персонала"},
+					{"option_values": [None, 0.87, 1, 1.29, 1.81, 2.61], "id": "PDIF", "text": "Сложность платформы разработки"},
+					{"option_values": [ 1.3,  1.1, 1, 0.87, 0.73, 0.62], "id": "FCIL", "text": "Средства поддержки"},
+					{"option_values": [1.43, 1.14, 1,    1,    1, None], "id": "SCED", "text": "График работ"},
+				] %}
+					{% include "card-form-select.html" %}
+				{% endwith %}
+			</div>
+			<div class="col-lg-5">
+				{% with method="COCOMO II", title="Параметры COCOMO II", input_groups=[
+					{"option_values": [6.2, 4.96, 3.72, 2.48, 1.24, 0], "selected_value": 3.72, "id": "PREC", "text": "Новизна проекта", "option_texts": [
+						"Полное отсутствие прецедентов, полностью непредсказуемый проект",
+						"Почти полное отсутствие прецедентов, взначительной мере непредсказуемый проект",
+						"Наличие некоторого количества прецедентов",
+						"Общее знакомство с проектом",
+						"Значительное знакомство с проектом",
+						"Полное знакомство с проектом",
+					]},
+					{"option_values": [5.07, 4.05, 3.04, 2.03, 1.01, 0], "selected_value": 5.07, "id": "FLEX", "text": "Гибкость процесса разработки", "option_texts": [
+						"Точный, строгий процесс разработки",
+						"Случайные послабления в процессе",
+						"Некоторые послабления в процессе",
+						"Большей частью согласованный процесс",
+						"Некоторое согласование процесса",
+						"Заказчик определил только общие цели",
+					]},
+					{"option_values": [7, 5.65, 4.24, 2.83, 1.41, 0], "selected_value": 4.24, "id": "RESL", "text": "Разрешение рисков в архитектуре системы", "option_texts": [
+						"Малое (20 %)",
+						"Некоторое (40 %)",
+						"Частое (60 %)",
+						"В целом (75 %)",
+						"Почти полное (90 %)",
+						"Полное (100%)",
+					]},
+					{"option_values": [5.48, 4.38, 3.29, 2.19, 1.1, 0], "selected_value": 1.1, "id": "TEAM", "text": "Сплоченность команды", "option_texts": [
+						"Сильно затрудненное взаимодействие",
+						"Несколько затрудненное взаимодействие",
+						"Некоторая согласованность",
+						"Повышенная согласованность",
+						"Высокая согласованность",
+						"Взаимодействие как в едином целом",
+					]},
+					{"option_values": [7, 6.24, 4.68, 1.12, 1.56, 0], "selected_value": 4.68, "id": "PMAT", "text": "Уровень зрелости процесса разработки", "option_texts": [
+						"Уровень 1 СММ",
+						"Уровень 1+ СММ",
+						"Уровень 2 СММ",
+						"Уровень 3 СММ",
+						"Уровень 7 СММ",
+						"Уровень 5 СММ",
+					]},
+				] %}
+					{% include "card-form-select.html" %}
+				{% endwith %}
+			</div>
 		</div>
 		<div class="row">
-			{% with title="Дополнительные параметры" %}
-				{% include "card-form-languages.html" %}
-			{% endwith %}
+			<div class="col-lg-7">
+				{% with title="Исходные данные для расчета общего количества ФП" %}
+					{% include "card-form-fp.html" %}
+				{% endwith %}
+			</div>
+			<div class="col-lg-5">
+				{% with title="Дополнительные параметры" %}
+					{% include "card-form-languages.html" %}
+				{% endwith %}
+			</div>
 		</div>
 		<div class="row">
 			{% with title="Результаты вычислений" %}

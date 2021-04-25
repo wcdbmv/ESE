@@ -1,4 +1,7 @@
-<div class="input-group mb-3">
-	<span class="input-group-text">{{ text }}</span>
+<div class="input-group mb-2">
+	{% if include_pre_label %}
+		<label class="input-group-text bg-primary text-light" for="{{ id }}">{{ id }}</label>
+	{% endif %}
+	<label class="input-group-text" for="{{ id }}">{{ text }}</label>
 	{% block input %}{% endblock %}
 </div>
