@@ -211,6 +211,7 @@ const LANGUAGES = [
 	['Delphi Pascal', 29],
 	['Perl', 21],
 	['Prolog', 54],
+	['SQL', 46],
 ];
 
 const addInputGroup = (id, inputGroup) => {
