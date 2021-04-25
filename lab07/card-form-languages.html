@@ -1,5 +1,20 @@
 {% extends "card-form.html" %}
 {% block input_groups %}
+	{% with id="%RUSE", text="Процент повторного использования", value=0, min=0, max=100, step=10, include_pre_label=True %}
+		{% include "input-group-number.html" %}
+	{% endwith %}
+	{% with id="PROD",
+		text="Оценка скорости разработки",
+		include_pre_label=True,
+		selected_value=13,
+		option_values=[4, 7, 13, 25, 50],
+		option_texts=["Очень низкий", "Низкий", "Номинальный", "Высокий", "Очень высокий"]
+	%}
+		{% include "input-group-select.html" %}
+	{% endwith %}
+	{% with id="ops", text="Количество объектных точек", value=0, min=0, max=1000, step=1 %}
+		{% include "input-group-number.html" %}
+	{% endwith %}
 	{% with id="salary", text="Зарплата разработчика, ₽", value=120000, min=50000, max=500000, step=10000 %}
 		{% include "input-group-number.html" %}
 	{% endwith %}
