@@ -4,7 +4,42 @@ const array_sum = (accumulator, currentValue) => accumulator + currentValue;
 const array_mult = (accumulator, currentValue) => accumulator * currentValue;
 
 let nLanguages = 1;
-let nFps = 1;
+let nFps = 0;
+
+const ilfComplicity = (det, ret) => {
+	const table = [[7, 7, 10], [7, 10, 15], [10, 15, 15]];
+	const det_i = det < 20 ? 0 : (det > 50 ? 2 : 1);
+	const ret_i = ret === 1 ? 0 : (ret > 5 ? 2 : 1);
+	return table[ret_i][det_i];
+};
+
+const eifComplicity = (det, ret) => {
+	const table = [[5, 5, 7], [5, 7, 10], [7, 10, 10]];
+	const det_i = det < 20 ? 0 : (det > 50 ? 2 : 1);
+	const ret_i = ret === 1 ? 0 : (ret > 5 ? 2 : 1);
+	return table[ret_i][det_i];
+};
+
+const eiComplicity = (det, ftr) => {
+	const table = [[3, 3, 4], [3, 4, 6], [4, 6, 6]];
+	const det_i = det < 5 ? 0 : (det > 15 ? 2 : 1);
+	const ftr_i = ftr <= 1 ? 0 : (ftr > 2 ? 2 : 1);
+	return table[ftr_i][det_i];
+};
+
+const eoComplicity = (det, ftr) => {
+	const table = [[4, 4, 5], [4, 5, 7], [5, 7, 7]];
+	const det_i = det < 5 ? 0 : (det > 19 ? 2 : 1);
+	const ftr_i = ftr <= 1 ? 0 : (ftr > 3 ? 2 : 1);
+	return table[ftr_i][det_i];
+};
+
+const eqComplicity = (det, ftr) => {
+	const table = [[3, 3, 4], [3, 4, 6], [4, 6, 6]];
+	const det_i = det < 5 ? 0 : (det > 19 ? 2 : 1);
+	const ftr_i = ftr <= 1 ? 0 : (ftr > 3 ? 2 : 1);
+	return table[ftr_i][det_i];
+};
 
 class Model {
 	constructor() {
@@ -122,6 +157,14 @@ class Model {
 			 ['Уровень 5 СММ', 0]],
 		];
 		this.p_factors_values = [];
+
+		this.complicities = [
+			eiComplicity,
+			eoComplicity,
+			eqComplicity,
+			ilfComplicity,
+			eifComplicity,
+		];
 	}
 
 	insert_Fi_data() {
@@ -136,10 +179,6 @@ class Model {
 			let lan_fp =  parseFloatFromSelect(id);
 			let prop = parseFloatFromSelect(`${id}prop`);
 			allprop += prop;
-			console.log(id, prop, lan_fp);
-			if (isNaN(lan_fp)) {
-				alert('unknown programming language');
-			}
 			this.languages.push({
 				prop: prop,
 				fp: lan_fp,
@@ -147,6 +186,19 @@ class Model {
 		}
 		if (allprop !== 100) {
 			alert('not 100 % of code covered with programming language');
+		}
+
+		this.fps = [];
+		for (let i = 0; i < nFps; ++i) {
+			let id = `fp${i}`;
+			const idx = parseFloatFromSelect(id);
+			const det = parseFloatFromSelect(`${id}det`);
+			const ret = parseFloatFromSelect(`${id}ret`);
+			this.fps.push({
+				idx,
+				det,
+				ret,
+			});
 		}
 	}
 
@@ -161,17 +213,11 @@ class Model {
 		this.p_factors_values = this.p_factors_labels.map(label => this[label]);
 	}
 
-	calculate_KLOC(allFP) {
-		this.fp = allFP * (0.65 + 0.01 * this.Fi_values.reduce(array_sum));
+	calculate_KLOC() {
+		this.nFps = this.fps.reduce((acc, fp) => acc + this.complicities[fp.idx](fp.det, fp.ret), 0);
+		this.fp = this.nFps * (0.65 + 0.01 * this.Fi_values.reduce(array_sum));
 
-		// 30 % кода будет написано на SQL (13 LOC на один оператор);
-		// 10 % — на JavaScript (56 LOC);
-		// 60 % — на Java (53 LOC).
-		this.kloc = 0;
-		for (let i = 0; i < this.languages.length; ++i) {
-			this.kloc += this.languages[i].prop / 100 * this.languages[i].fp;
-		}
-		this.kloc *= this.fp / 1000;
+		this.kloc = this.fp / 1000 * this.languages.reduce((acc, lang) => acc + lang.fp * lang.prop / 100, 0);
 
 		return this.kloc;
 	}
@@ -255,7 +301,6 @@ const clearFps = () => {
 	nFps = 0;
 	const fpdiv = document.getElementById('fps');
 	fpdiv.innerHTML = '';
-	addFp();
 };
 
 const tableCreate = rows => {
@@ -291,7 +336,7 @@ const setData = () => {
 	console.log('Cocomo values', model.Cocomo_values);
 	console.log('values for p', model.p_factors_values);
 
-	model.calculate_KLOC(79);
+	model.calculate_KLOC();
 	model.calculate_Cocomo();
 
 	const table = tableCreate([
