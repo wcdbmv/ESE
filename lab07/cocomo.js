@@ -1,8 +1,8 @@
 const parseFloatFromSelect = selectId => parseFloat(document.getElementById(selectId).value);
 const parseFloatFromInput = parseFloatFromSelect;
 
-const array_sum = (accumulator, currentValue) => accumulator + currentValue;
-const array_mult = (accumulator, currentValue) => accumulator * currentValue;
+const arraySum = (accumulator, currentValue) => accumulator + currentValue;
+const arrayMult = (accumulator, currentValue) => accumulator * currentValue;
 
 let nLanguages = 1;
 let nFps = 0;
@@ -44,7 +44,7 @@ const eqComplicity = (det, ftr) => {
 
 class Model {
 	constructor() {
-		this.Fi_labels_eng = [
+		this.FiLabels = [
 			'Data_exchange',                                // Передача данных
 			'Distributed_processing',                       // Распределенная обработка данных
 			'Performance',                                  // Производительность
@@ -60,9 +60,9 @@ class Model {
 			'Portability',                                  // Количество возможных установок на различных платформах
 			'Flexibility',                                  // Простота изменений (гибкость)
 		];
-		this.Fi_values = [];  // 0 — 5 are possible values
+		this.FiValues = [];  // 0 — 5 are possible values
 
-		this.Cocomo_labels = [
+		this.CocomoLabels = [
 			'RCPX',  // Надежность и уровень сложности разрабатываемой системы
 			'RUSE',  // Повторное использование компонентов
 			'PERS',  // Возможности персонала
@@ -71,16 +71,16 @@ class Model {
 			'FCIL',  // Средства поддержки
 			'SCED',  // График работ
 		];
-		this.Cocomo_values = [];
+		this.CocomoValues = [];
 
-		this.p_factors_labels = [
+		this.pLabels = [
 			'PREC',  // Новизна проекта
 			'FLEX',  // Гибкость процесса разработки
 			'RESL',  // Разрешение рисков в архитектуре системы
 			'TEAM',  // Сплоченность команды
 			'PMAT',  // Уровень зрелости процесса разработки
 		];
-		this.p_factors_values = [];
+		this.pValues = [];
 
 		this.complicities = [
 			eiComplicity,
@@ -92,26 +92,18 @@ class Model {
 	}
 
 	insertFiValues() {
-		this.Fi_labels_eng.forEach(label => this[label] = parseFloatFromSelect(label));
-		this.Fi_values = this.Fi_labels_eng.map(label => this[label]);
+		this.FiLabels.forEach(label => this[label] = parseFloatFromSelect(label));
+		this.FiValues = this.FiLabels.map(label => this[label]);
 	}
 
-	insertLanguages() {
-		this.languages = [];
-		let allprop = 0;
-		for (let i = 0; i < nLanguages; ++i) {
-			const id = `lang${i}`;
-			const lan_fp =  parseFloatFromSelect(id);
-			const prop = parseFloatFromSelect(`${id}prop`);
-			allprop += prop;
-			this.languages.push({
-				prop: prop,
-				fp: lan_fp,
-			});
-		}
-		if (allprop !== 100) {
-			alert('Языками программирования покрыто не 100 % кода');
-		}
+	insertCocomoValues() {
+		this.CocomoLabels.forEach(label => this[label] = parseFloatFromSelect(label));
+		this.CocomoValues = this.CocomoLabels.map(label => this[label]);
+	}
+
+	insertPValues() {
+		this.pLabels.forEach(label => this[label] = parseFloatFromSelect(label));
+		this.pValues = this.pLabels.map(label => this[label]);
 	}
 
 	insertFps() {
@@ -121,26 +113,28 @@ class Model {
 
 		this.fps = [];
 		for (let i = 0; i < nFps; ++i) {
-			let id = `fp${i}`;
+			const id = `fp${i}`;
 			const idx = parseFloatFromSelect(id);
 			const det = parseFloatFromSelect(`${id}det`);
 			const ret = parseFloatFromSelect(`${id}ret`);
-			this.fps.push({
-				idx,
-				det,
-				ret,
-			});
+			this.fps.push({idx, det, ret});
 		}
 	}
 
-	insertCocomoValues() {
-		this.Cocomo_labels.forEach(label => this[label] = parseFloatFromSelect(label));
-		this.Cocomo_values = this.Cocomo_labels.map(label => this[label]);
-	}
+	insertLanguages() {
+		this.languages = [];
+		let sumProp = 0;
+		for (let i = 0; i < nLanguages; ++i) {
+			const id = `lang${i}`;
+			const lan_fp =  parseFloatFromSelect(id);
+			const prop = parseFloatFromSelect(`${id}prop`);
+			this.languages.push({prop, fp: lan_fp});
+			sumProp += prop;
+		}
 
-	insertPValues() {
-		this.p_factors_labels.forEach(label => this[label] = parseFloatFromSelect(label));
-		this.p_factors_values = this.p_factors_labels.map(label => this[label]);
+		if (sumProp !== 100) {
+			alert('Языками программирования покрыто не 100 % кода');
+		}
 	}
 
 	insertSalary() {
@@ -165,22 +159,18 @@ class Model {
 		this.insertSalary();
 	}
 
-
-	calculateKloc() {
+	calculateKSLOC() {
 		this.nFps = this.fps.reduce((acc, fp) => acc + this.complicities[fp.idx](fp.det, fp.ret), 0);
-		this.fp = this.nFps * (0.65 + 0.01 * this.Fi_values.reduce(array_sum));
+		this.sumFi = this.FiValues.reduce(arraySum);
+		this.FP = this.nFps * (0.65 + 0.01 * this.sumFi);
 
-		this.kloc = this.fp / 1000 * this.languages.reduce((acc, lang) => acc + lang.fp * lang.prop / 100, 0);
+		this.KSLOC = this.FP * this.languages.reduce((acc, lang) => acc + lang.fp * lang.prop / 100, 0);
 
-		return this.kloc;
+		return this.KSLOC;
 	}
 
 	calculateP() {
-		this.p = this.p_factors_values.reduce(array_sum) / 100 + 1.01;
-	}
-
-	calculateEArch() {
-		this.EArch = this.Cocomo_values.reduce(array_mult);
+		this.p = this.pValues.reduce(arraySum) / 100 + 1.01;
 	}
 
 	calculateTime() {
@@ -195,15 +185,13 @@ class Model {
 
 		this.calculateP();
 		this.calculateTime();
-
-		console.log(this);
 	}
 
 	calculateEarlyArchitectureModel() {
-		this.calculateEArch();
-		this.calculateKloc();
+		this.EArch = this.CocomoValues.reduce(arrayMult);
+		this.calculateKSLOC();
 		this.calculateP();
-		this.work = 2.45 * this.EArch * Math.pow(this.kloc, this.p);
+		this.work = 2.45 * this.EArch * Math.pow(this.KSLOC, this.p);
 
 		this.calculateTime();
 	}
@@ -343,8 +331,8 @@ const calculateEAM = () => {
 	const table = tableCreate({
 		title: 'Модель композиции приложения',
 		rows: [
-			['Количество функциональных точек', model.fp.toFixed(2)],
-			['Размер кода, KLOC', model.kloc.toFixed(2)],
+			['Количество функциональных точек', model.FP.toFixed(2)],
+			['Размер кода, KLOC', model.KSLOC.toFixed(2)],
 			['Показатель степени', model.p.toFixed(2)],
 			['Трудозатраты, чел.-мес.', model.work.toFixed(2)],
 			['Время, мес.', model.time.toFixed(2)],
