@@ -115,8 +115,8 @@ class Model {
 		for (let i = 0; i < nFps; ++i) {
 			const id = `fp${i}`;
 			const idx = parseFloatFromSelect(id);
-			const det = parseFloatFromSelect(`${id}det`);
-			const ret = parseFloatFromSelect(`${id}ret`);
+			const det = parseFloatFromInput(`${id}det`);
+			const ret = parseFloatFromInput(`${id}ret`);
 			this.fps.push({idx, det, ret});
 		}
 	}
@@ -127,7 +127,7 @@ class Model {
 		for (let i = 0; i < nLanguages; ++i) {
 			const id = `lang${i}`;
 			const lan_fp =  parseFloatFromSelect(id);
-			const prop = parseFloatFromSelect(`${id}prop`);
+			const prop = parseFloatFromInput(`${id}prop`);
 			this.languages.push({prop, fp: lan_fp});
 			sumProp += prop;
 		}
