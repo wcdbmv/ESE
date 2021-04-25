@@ -164,7 +164,7 @@ class Model {
 		this.sumFi = this.FiValues.reduce(arraySum);
 		this.FP = this.nFps * (0.65 + 0.01 * this.sumFi);
 
-		this.KSLOC = this.FP * this.languages.reduce((acc, lang) => acc + lang.fp * lang.prop / 100, 0);
+		this.KSLOC = this.FP * this.languages.reduce((acc, lang) => acc + lang.fp * lang.prop / 100, 0) / 1000;
 
 		return this.KSLOC;
 	}
