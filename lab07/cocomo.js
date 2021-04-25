@@ -3,7 +3,8 @@ const parseFloatFromSelect = selectId => parseFloat(document.getElementById(sele
 const array_sum = (accumulator, currentValue) => accumulator + currentValue;
 const array_mult = (accumulator, currentValue) => accumulator * currentValue;
 
-let number_of_languages = 1;
+let nLanguages = 1;
+let nFps = 1;
 
 class Model {
 	constructor() {
@@ -130,7 +131,7 @@ class Model {
 
 		this.languages = [];
 		let allprop = 0;
-		for (let i = 0; i < number_of_languages; ++i) {
+		for (let i = 0; i < nLanguages; ++i) {
 			let id = `lang${i}`;
 			let lan_fp =  parseFloatFromSelect(id);
 			let prop = parseFloatFromSelect(`${id}prop`);
@@ -184,33 +185,77 @@ class Model {
 	}
 }
 
+const LANGUAGES = [
+	['Ассемблер', 320],
+	['C', 128],
+	['Кобол', 106],
+	['Фортран', 106],
+	['Паскаль', 90],
+	['C++', 53],
+	['Java / C#', 53],
+	['Ada 95', 49],
+	['Visual Basic 6', 24],
+	['Visual C++', 34],
+	['Delphi Pascal', 29],
+	['Perl', 21],
+	['Prolog', 54],
+];
+
+const addInputGroup = (id, inputGroup) => {
+	const div = document.getElementById(id);
+
+	const input = document.createElement('div');
+	input.classList.add('input-group', 'mb-2');
+	input.innerHTML = inputGroup;
+
+	div.appendChild(input);
+};
+
 const addLanguage = () => {
-	const langdiv = document.getElementById('langs');
-	const div = document.createElement('div');
-	div.classList.add('input-group', 'mb-3');
-	div.innerHTML = `
+	const options = LANGUAGES.map(lang => `<option value="${lang[1]}">${lang[0]}</option>`).join('\n');
+	const inputGroup = `
 		<span class="input-group-text">Язык программирования</span>
-		<select class="form-select" id="lang${number_of_languages}">
-			<option selected value="320">assembley</option>
-			<option value="128">c</option>
-			<option value="196">kobol</option>
-			<option value="106">fortran</option>
-			<option value="90">pascal</option>
-			<option value="53">c++</option>
-			<option value="53">java; c#</option>
-			<option value="13">sql</option>
-			<option value="56">js</option>
-			<option value="49">ada 95</option>
-			<option value="24">visual basic</option>
-			<option value="34">visual c++</option>
-			<option value="29">delphi</option>
-			<option value="21">perl</option>
-			<option value="54">prolog</option>
+		<select class="form-select" id="lang${nLanguages}">
+			${options}
 		</select>
-		<input class="form-control" id="lang${number_of_languages}prop" max="100" min="0" step="10" type="number" value="0">
+		<input class="form-control" id="lang${nLanguages}prop" max="100" min="0" step="10" type="number" value="0">
 		<span class="input-group-text">%</span>`;
-	langdiv.appendChild(div);
-	++number_of_languages;
+	++nLanguages;
+
+	addInputGroup('langs', inputGroup);
+};
+
+const addFp = () => {
+	const inputGroup = `
+		<label class="input-group-text" for="fp${nFps}">Характеристика</label>
+		<select class="form-select" id="fp${nFps}">
+			<option selected="selected" value="1">Внешние вводы</option>
+			<option value="2">Внешние выводы</option>
+			<option value="3">Внешние запросы</option>
+			<option value="4">Внутренние логические файлы</option>
+			<option value="5">Внешние интерфейсные файлы</option>
+		</select>
+		<label class="input-group-text" for="fp${nFps}det">DET</label>
+		<input class="form-control" id="fp${nFps}det" max="100" min="0" step="1" type="number" value="0">
+		<label class="input-group-text" for="fp${nFps}ret">FTR/RET</label>
+		<input class="form-control" id="fp${nFps}ret" max="100" min="0" step="1" type="number" value="0">`;
+	++nFps;
+
+	addInputGroup('fps', inputGroup);
+};
+
+const clearLanguages = () => {
+	nLanguages = 0;
+	const langdiv = document.getElementById('langs');
+	langdiv.innerHTML = '';
+	addLanguage();
+};
+
+const clearFps = () => {
+	nFps = 0;
+	const fpdiv = document.getElementById('fps');
+	fpdiv.innerHTML = '';
+	addFp();
 };
 
 const tableCreate = rows => {
@@ -267,9 +312,7 @@ const clearAll = () => {
 	const result = document.querySelector('.row:last-child .card-body');
 	result.innerHTML = '<h3 class="card-title">Результаты вычислений</h3>';
 
-	number_of_languages = 0;
-	const langdiv = document.getElementById('langs');
-	langdiv.innerHTML = '';
-	addLanguage();
+	clearLanguages();
+	clearFps();
 };
 
