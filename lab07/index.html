@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="ru">
+	<head>
+		<meta charset="utf-8">
+		<meta content="width=device-width, initial-scale=1" name="viewport">
+		<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" rel="stylesheet">
+		<link href="styles.css" rel="stylesheet">
+		<title>
+			COCOMO II
+		</title>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row justify-content-md-center">
+				<div class="col-8">
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<h3 class="card-title">
+								Параметры для метода функциональных точек
+							</h3>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Data_exchange">
+									Передача данных
+								</label>
+								<select class="form-select" id="Data_exchange">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Distributed_processing">
+									Распределенная обработка
+								</label>
+								<select class="form-select" id="Distributed_processing">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Performance">
+									Производительность
+								</label>
+								<select class="form-select" id="Performance">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Operating_Limitations_on_Hardware_Resources">
+									Эксплуатационные ограничения
+								</label>
+								<select class="form-select" id="Operating_Limitations_on_Hardware_Resources">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Transactional_Load">
+									Частота транзакций
+								</label>
+								<select class="form-select" id="Transactional_Load">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Intensity_of_User_Interaction">
+									Оперативный ввод данных
+								</label>
+								<select class="form-select" id="Intensity_of_User_Interaction">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Ergonomics_Affecting_End_User_Efficiency">
+									Эффективность работы конечных пользователей
+								</label>
+								<select class="form-select" id="Ergonomics_Affecting_End_User_Efficiency">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Online_update">
+									Оперативное обновление
+								</label>
+								<select class="form-select" id="Online_update">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Processing_complexity">
+									Сложность обработки
+								</label>
+								<select class="form-select" id="Processing_complexity">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Reuse">
+									Повторная используемость
+								</label>
+								<select class="form-select" id="Reuse">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Ease_of_installation">
+									Лёгкость инсталляции
+								</label>
+								<select class="form-select" id="Ease_of_installation">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Ease_of_use_administration">
+									Лёгкость эксплуатации
+								</label>
+								<select class="form-select" id="Ease_of_use_administration">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Portability">
+									Количество возможных установок на различных платформах
+								</label>
+								<select class="form-select" id="Portability">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="Flexibility">
+									Гибкость
+								</label>
+								<select class="form-select" id="Flexibility">
+									<option value="0">
+										Нет влияния
+									</option>
+									<option value="1">
+										Случайное влияние
+									</option>
+									<option value="2">
+										Небольшое влияние
+									</option>
+									<option selected="selected" value="3">
+										Среднее влияние
+									</option>
+									<option value="4">
+										Существенное влияние
+									</option>
+									<option value="5">
+										Сильное влияние
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center">
+				<div class="col-8">
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<h3 class="card-title">
+								Параметры COCOMO
+							</h3>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="RCPX">
+									RCPX
+								</label>
+								<label class="input-group-text" for="RCPX">
+									Надежность и уровень сложности разрабатываемой системы
+								</label>
+								<select class="form-select" id="RCPX">
+									<option value="0.6">
+										Очень низкий
+									</option>
+									<option value="0.83">
+										Низкий
+									</option>
+									<option selected="selected" value="1">
+										Номинальный
+									</option>
+									<option value="1.33">
+										Высокий
+									</option>
+									<option value="1.91">
+										Очень высокий
+									</option>
+									<option value="2.72">
+										Сверхвысокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="RUSE">
+									RUSE
+								</label>
+								<label class="input-group-text" for="RUSE">
+									Повторное использование компонентов
+								</label>
+								<select class="form-select" id="RUSE">
+									<option value="0.95">
+										Низкий
+									</option>
+									<option selected="selected" value="1">
+										Номинальный
+									</option>
+									<option value="1.07">
+										Высокий
+									</option>
+									<option value="1.15">
+										Очень высокий
+									</option>
+									<option value="1.24">
+										Сверхвысокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PERS">
+									PERS
+								</label>
+								<label class="input-group-text" for="PERS">
+									Возможности персонала
+								</label>
+								<select class="form-select" id="PERS">
+									<option value="1.62">
+										Очень низкий
+									</option>
+									<option value="1.26">
+										Низкий
+									</option>
+									<option selected="selected" value="1">
+										Номинальный
+									</option>
+									<option value="0.83">
+										Высокий
+									</option>
+									<option value="0.63">
+										Очень высокий
+									</option>
+									<option value="0.5">
+										Сверхвысокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PREX">
+									PREX
+								</label>
+								<label class="input-group-text" for="PREX">
+									Опыт персонала
+								</label>
+								<select class="form-select" id="PREX">
+									<option value="1.33">
+										Очень низкий
+									</option>
+									<option value="1.22">
+										Низкий
+									</option>
+									<option selected="selected" value="1">
+										Номинальный
+									</option>
+									<option value="0.87">
+										Высокий
+									</option>
+									<option value="0.74">
+										Очень высокий
+									</option>
+									<option value="0.62">
+										Сверхвысокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PDIF">
+									PDIF
+								</label>
+								<label class="input-group-text" for="PDIF">
+									Сложность платформы разработки
+								</label>
+								<select class="form-select" id="PDIF">
+									<option value="0.87">
+										Низкий
+									</option>
+									<option selected="selected" value="1">
+										Номинальный
+									</option>
+									<option value="1.29">
+										Высокий
+									</option>
+									<option value="1.81">
+										Очень высокий
+									</option>
+									<option value="2.61">
+										Сверхвысокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="FCIL">
+									FCIL
+								</label>
+								<label class="input-group-text" for="FCIL">
+									Средства поддержки
+								</label>
+								<select class="form-select" id="FCIL">
+									<option value="1.3">
+										Очень низкий
+									</option>
+									<option value="1.1">
+										Низкий
+									</option>
+									<option selected="selected" value="1">
+										Номинальный
+									</option>
+									<option value="0.87">
+										Высокий
+									</option>
+									<option value="0.73">
+										Очень высокий
+									</option>
+									<option value="0.62">
+										Сверхвысокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="SCED">
+									SCED
+								</label>
+								<label class="input-group-text" for="SCED">
+									График работ
+								</label>
+								<select class="form-select" id="SCED">
+									<option value="1.43">
+										Очень низкий
+									</option>
+									<option value="1.14">
+										Низкий
+									</option>
+									<option selected="selected" value="1">
+										Номинальный
+									</option>
+									<option selected="selected" value="1">
+										Высокий
+									</option>
+									<option selected="selected" value="1">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center">
+				<div class="col-8">
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<h3 class="card-title">
+								Параметры COCOMO II
+							</h3>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PREC">
+									PREC
+								</label>
+								<label class="input-group-text" for="PREC">
+									Новизна проекта
+								</label>
+								<select class="form-select" id="PREC">
+									<option value="6.2">
+										Полное отсутствие прецедентов, полностью непредсказуемый проект
+									</option>
+									<option value="4.96">
+										Почти полное отсутствие прецедентов, взначительной мере непредсказуемый проект
+									</option>
+									<option selected="selected" value="3.72">
+										Наличие некоторого количества прецедентов
+									</option>
+									<option value="2.48">
+										Общее знакомство с проектом
+									</option>
+									<option value="1.24">
+										Значительное знакомство с проектом
+									</option>
+									<option value="0">
+										Полное знакомство с проектом
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="FLEX">
+									FLEX
+								</label>
+								<label class="input-group-text" for="FLEX">
+									Гибкость процесса разработки
+								</label>
+								<select class="form-select" id="FLEX">
+									<option selected="selected" value="5.07">
+										Точный, строгий процесс разработки
+									</option>
+									<option value="4.05">
+										Случайные послабления в процессе
+									</option>
+									<option value="3.04">
+										Некоторые послабления в процессе
+									</option>
+									<option value="2.03">
+										Большей частью согласованный процесс
+									</option>
+									<option value="1.01">
+										Некоторое согласование процесса
+									</option>
+									<option value="0">
+										Заказчик определил только общие цели
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="RESL">
+									RESL
+								</label>
+								<label class="input-group-text" for="RESL">
+									Разрешение рисков в архитектуре системы
+								</label>
+								<select class="form-select" id="RESL">
+									<option value="7">
+										Малое (20 %)
+									</option>
+									<option value="5.65">
+										Некоторое (40 %)
+									</option>
+									<option selected="selected" value="4.24">
+										Частое (60 %)
+									</option>
+									<option value="2.83">
+										В целом (75 %)
+									</option>
+									<option value="1.41">
+										Почти полное (90 %)
+									</option>
+									<option value="0">
+										Полное (100%)
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="TEAM">
+									TEAM
+								</label>
+								<label class="input-group-text" for="TEAM">
+									Сплоченность команды
+								</label>
+								<select class="form-select" id="TEAM">
+									<option value="5.48">
+										Сильно затрудненное взаимодействие
+									</option>
+									<option value="4.38">
+										Несколько затрудненное взаимодействие
+									</option>
+									<option value="3.29">
+										Некоторая согласованность
+									</option>
+									<option value="2.19">
+										Повышенная согласованность
+									</option>
+									<option selected="selected" value="1.1">
+										Высокая согласованность
+									</option>
+									<option value="0">
+										Взаимодействие как в едином целом
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PMAT">
+									PMAT
+								</label>
+								<label class="input-group-text" for="PMAT">
+									Уровень зрелости процесса разработки
+								</label>
+								<select class="form-select" id="PMAT">
+									<option value="7">
+										Уровень 1 СММ
+									</option>
+									<option value="6.24">
+										Уровень 1+ СММ
+									</option>
+									<option selected="selected" value="4.68">
+										Уровень 2 СММ
+									</option>
+									<option value="1.12">
+										Уровень 3 СММ
+									</option>
+									<option value="1.56">
+										Уровень 7 СММ
+									</option>
+									<option value="0">
+										Уровень 5 СММ
+									</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center">
+				<div class="col-8">
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<h3 class="card-title">
+								Исходные данные для расчета общего количества ФП
+							</h3>
+							<div id="fps">
+							</div>
+							<div class="d-flex justify-content-center">
+								<button class="btn btn-outline-primary" onclick="addFp()" type="button">
+									Добавить характеристику
+								</button>
+								<button class="btn btn-outline-danger" onclick="clearFps()" type="button">
+									Очистить
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center">
+				<div class="col-8">
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<h3 class="card-title">
+								Дополнительные параметры
+							</h3>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="%RUSE">
+									%RUSE
+								</label>
+								<label class="input-group-text" for="%RUSE">
+									Процент повторного использования
+								</label>
+								<input class="form-control" id="%RUSE" max="100" min="0" step="10" type="number" value="0">
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text bg-primary text-light" for="PROD">
+									PROD
+								</label>
+								<label class="input-group-text" for="PROD">
+									Оценка скорости разработки
+								</label>
+								<select class="form-select" id="PROD">
+									<option value="4">
+										Очень низкий
+									</option>
+									<option value="7">
+										Низкий
+									</option>
+									<option selected="selected" value="13">
+										Номинальный
+									</option>
+									<option value="25">
+										Высокий
+									</option>
+									<option value="50">
+										Очень высокий
+									</option>
+								</select>
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="ops">
+									Количество объектных точек
+								</label>
+								<input class="form-control" id="ops" max="1000" min="0" step="1" type="number" value="0">
+							</div>
+							<div class="input-group mb-2">
+								<label class="input-group-text" for="salary">
+									Зарплата разработчика, ₽
+								</label>
+								<input class="form-control" id="salary" max="500000" min="50000" step="10000" type="number" value="120000">
+							</div>
+							<div id="langs">
+								<div class="input-group mb-2">
+									<label class="input-group-text" for="lang0">
+										Язык программирования
+									</label>
+									<select class="form-select" id="lang0">
+										<option selected="selected" value="320">
+											Ассемблер
+										</option>
+										<option value="128">
+											C
+										</option>
+										<option value="106">
+											Кобол
+										</option>
+										<option value="106">
+											Фортран
+										</option>
+										<option value="90">
+											Паскаль
+										</option>
+										<option value="53">
+											C++
+										</option>
+										<option value="53">
+											Java / C#
+										</option>
+										<option value="49">
+											Ada 95
+										</option>
+										<option value="24">
+											Visual Basic 6
+										</option>
+										<option value="34">
+											Visual C++
+										</option>
+										<option value="29">
+											Delphi Pascal
+										</option>
+										<option value="21">
+											Perl
+										</option>
+										<option value="54">
+											Prolog
+										</option>
+										<option value="46">
+											SQL
+										</option>
+									</select>
+									<input class="form-control" id="lang0prop" max="100" min="0" step="10" type="number" value="0">
+									<span class="input-group-text">
+										%
+									</span>
+								</div>
+							</div>
+							<div class="d-flex justify-content-center">
+								<button class="btn btn-outline-primary" onclick="addLanguage()" type="button">
+									Добавить язык программирования
+								</button>
+								<button class="btn btn-outline-danger" onclick="clearLanguages()" type="button">
+									Очистить
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center">
+				<div class="col-8">
+					<div class="d-flex justify-content-center">
+						<button class="btn btn-outline-success" onclick="calculateACM()" type="button">
+							Рассчитать с использованием модели композиции приложения
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center">
+				<div class="col-8">
+					<div class="d-flex justify-content-center">
+						<button class="btn btn-outline-success" onclick="calculateEAM()" type="button">
+							Рассчитать с использованием модели ранней разработки архитектуры
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center">
+				<div class="col-8">
+					<div class="d-flex justify-content-center">
+						<button class="btn btn-outline-danger" onclick="clearResult()" type="button">
+							Очистить
+						</button>
+					</div>
+				</div>
+			</div>
+			<div class="row justify-content-md-center">
+				<div class="col-8">
+					<div class="card shadow-sm mb-4">
+						<div class="card-body">
+							<h3 class="card-title">
+								Результаты вычислений
+							</h3>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script crossorigin="anonymous" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js">
+		</script>
+		<script src="cocomo.js">
+		</script>
+	</body>
+</html>
