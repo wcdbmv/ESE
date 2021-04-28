@@ -1,0 +1,25 @@
+{% extends "card-form.html" %}
+{% block input_groups %}
+	{% for input_group in input_groups %}
+		{% if method == "FPA" %}
+			{% set ignore1 = input_group.update({"selected_value": 3}) %}
+			{% set ignore2 = input_group.update({"option_values": [0, 1, 2, 3, 4, 5]}) %}
+			{% set ignore3 = input_group.update({"option_texts": ["Нет влияния", "Случайное влияние", "Небольшое влияние", "Среднее влияние", "Существенное влияние", "Сильное влияние"]}) %}
+		{% elif method == "COCOMO" %}
+			{% set ignore1 = input_group.update({"selected_value": 1}) %}
+			{% set ignore2 = input_group.update({"option_texts": ["Очень низкий", "Низкий", "Номинальный", "Высокий", "Очень высокий", "Сверхвысокий"]}) %}
+		{% endif %}
+
+		{% set ignore = input_group.update({"include_pre_label": method.startswith("COCOMO")}) %}
+
+		{% with id=input_group.id,
+			text=input_group.text,
+			selected_value=input_group.selected_value,
+			option_values=input_group.option_values,
+			option_texts=input_group.option_texts,
+			include_pre_label=input_group.include_pre_label
+		%}
+			{% include "input-group-select.html" %}
+		{% endwith %}
+	{% endfor %}
+{% endblock %}

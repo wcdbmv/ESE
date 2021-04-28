@@ -1,0 +1,14 @@
+{% extends "card-form.html" %}
+{% block input_groups %}
+	<div id="fps">
+	{#
+	{% with id="fp0", text="Характеристика" %}
+		{% include "input-group-fp.html" %}
+	{% endwith %}
+	#}
+	</div>
+	<div class="d-flex justify-content-center">
+		<button type="button" class="btn btn-outline-primary" onclick="addFp()">Добавить характеристику</button>
+		<button type="button" class="btn btn-outline-danger" onclick="clearFps()">Очистить</button>
+	</div>
+{% endblock %}

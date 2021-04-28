@@ -1,0 +1,18 @@
+{% extends "input-group.html" %}
+{% block input %}
+	{% with id="fp0",
+		selected_value=1,
+		option_values=[0, 1, 2, 3, 4],
+		option_texts=["Внешние вводы", "Внешние выводы", "Внешние запросы", "Внутренние логические файлы", "Внешние интерфейсные файлы"]
+	%}
+		{% include "form-select.html" %}
+	{% endwith %}
+	<label class="input-group-text" for="fp0det">DET</label>
+	{% with id="fp0det", value=0, min=0, max=100, step=1 %}
+		{% include "form-number.html" %}
+	{% endwith %}
+	<label class="input-group-text" for="fp0ret">FTR/RET</label>
+	{% with id="fp0ret", value=0, min=0, max=100, step=1 %}
+		{% include "form-number.html" %}
+	{% endwith %}
+{% endblock %}
