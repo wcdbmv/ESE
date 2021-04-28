@@ -346,7 +346,7 @@ const calculateEAM = () => {
 	result.appendChild(table);
 };
 
-const clearAll = () => {
+const clearResult = () => {
 	const result = document.querySelector('.row:last-child .card-body');
 	result.innerHTML = '<h3 class="card-title">Результаты вычислений</h3>';
 };
