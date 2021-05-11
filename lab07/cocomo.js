@@ -312,6 +312,7 @@ const calculateACM = () => {
 		title: 'Модель композиции приложения',
 		rows: [
 			['NOP', model.nop],
+			['Показатель степени', model.p.toFixed(2)],
 			['Трудозатраты, чел.-мес.', model.work.toFixed(2)],
 			['Время, мес.', model.time.toFixed(2)],
 			['Количество работников', model.workers],
@@ -332,7 +333,8 @@ const calculateEAM = () => {
 	const table = tableCreate({
 		title: 'Модель ранней разработки архитектуры',
 		rows: [
-			['Количество функциональных точек', model.FP.toFixed(2)],
+			['Количество ФП', model.nFps],
+			['Количество выровненных ФП', model.FP.toFixed(2)],
 			['Размер кода, KLOC', model.KSLOC.toFixed(2)],
 			['Показатель степени', model.p.toFixed(2)],
 			['Трудозатраты, чел.-мес.', model.work.toFixed(2)],
